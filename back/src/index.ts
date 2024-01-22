@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const winston = require("winston");
 
+import logger from "./config/winstonConfig";
 import connectDB from "./db/index";
 
 const app = express();
@@ -17,35 +17,10 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Winston
-const { format } = winston;
-const { combine, timestamp, printf } = format;
-
-const logFormat = printf(
-  ({
-    level,
-    message,
-    timestamp,
-  }: {
-    level: string;
-    message: string;
-    timestamp: string;
-  }) => {
-    return `${timestamp} ${level}: ${message}`;
-  }
-);
-
-const logger = winston.createLogger({
-  level: "info",
-  format: combine(timestamp(), logFormat),
-  transports: [
-    new winston.transports.File({ filename: "logfile.log", level: "info" }),
-    new winston.transports.Console(),
-  ],
-});
 // Utilisation du logger
 logger.info("Ceci est un message d'information dans le fichier journal.");
 
 connectDB();
+logger.info("Server started");
 
 app.listen(port, () => console.log(`🍿 Server running on port ${port}`));

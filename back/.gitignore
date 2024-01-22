@@ -1,0 +1,35 @@
+# Node.js
+node_modules/
+pnpm-lock.yaml
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+.pnp/
+.pnp.js
+pnpm-store/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Compiled binary addons
+build/Release
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# Backend
+/dist/
+

@@ -19,6 +19,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // Utilisation du logger
 winstonConfig_1.default.info("Ceci est un message d'information dans le fichier journal.");
-(0, index_1.default)();
 winstonConfig_1.default.info("Server started");
+(0, index_1.default)();
 app.listen(port, () => console.log(`🍿 Server running on port ${port}`));

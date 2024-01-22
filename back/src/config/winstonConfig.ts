@@ -1,21 +1,5 @@
 // Winston
 const winston = require("winston");
-const { format } = winston;
-const { combine, timestamp, printf } = format;
-
-const logFormat = printf(
-  ({
-    level,
-    message,
-    timestamp,
-  }: {
-    level: string;
-    message: string;
-    timestamp: string;
-  }) => {
-    return `${timestamp} ${level}: ${message}`;
-  }
-);
 
 const logger = winston.createLogger({
   level: "info",
@@ -32,7 +16,7 @@ const logger = winston.createLogger({
   ],
 });
 
-process.on("unhandledRejection", (reason, promise) => {
+process.on("unhandledRejection", (reason) => {
   throw reason;
 });
 

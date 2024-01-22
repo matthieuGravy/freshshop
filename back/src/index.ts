@@ -19,8 +19,8 @@ app.use(cors(corsOptions));
 
 // Utilisation du logger
 logger.info("Ceci est un message d'information dans le fichier journal.");
+logger.info("Server started");
 
 connectDB();
-logger.info("Server started");
 
 app.listen(port, () => console.log(`🍿 Server running on port ${port}`));

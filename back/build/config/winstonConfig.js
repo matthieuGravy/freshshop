@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // Winston
 const winston = require("winston");
-const { format } = winston;
-const { combine, timestamp, printf } = format;
-const logFormat = printf(({ level, message, timestamp, }) => {
-    return `${timestamp} ${level}: ${message}`;
-});
 const logger = winston.createLogger({
     level: "info",
     format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
@@ -18,7 +13,7 @@ const logger = winston.createLogger({
         new winston.transports.File({ filename: "exceptions.log" }),
     ],
 });
-process.on("unhandledRejection", (reason, promise) => {
+process.on("unhandledRejection", (reason) => {
     throw reason;
 });
 logger.info("Hello world", { customMetadata: "Some information" });

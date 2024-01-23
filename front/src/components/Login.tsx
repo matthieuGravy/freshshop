@@ -40,8 +40,13 @@ const Login = () => {
       const user = await response.json();
 
       if (!user.connected) {
+        setErrors({
+          email: "Email ou mot de passe non trouvé",
+          password: "Email ou mot de passe non trouvé",
+        });
         throw new Error("Email ou mot de passe non trouvé");
       }
+
       console.log("connecté");
       dispatch(loginSuccess(user));
     } catch (error) {

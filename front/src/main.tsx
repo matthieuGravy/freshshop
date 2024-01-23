@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { router } from "./router.jsx";
 import { store } from "./store/";
 
+import Fixedbar from "./components/Fixedbar";
+
 import "./index.css";
 
 const rootElement = document.getElementById("root");
@@ -15,6 +17,7 @@ const root = createRoot(rootElement);
 root.render(
   <StrictMode>
     <Provider store={store}>
+      <Fixedbar />
       <RouterProvider router={router} />
     </Provider>
   </StrictMode>

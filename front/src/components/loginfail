@@ -1,0 +1,74 @@
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useDispatch } from "react-redux";
+
+import { loginSuccess } from "../store/actions/actionConnection";
+
+// Créer un schéma de validation avec yup
+const schema = yup.object().shape({
+  email: yup.string().required(),
+  password: yup.string().required(),
+});
+
+type FormData = {
+  email: string;
+  password: string;
+};
+
+const Login = () => {
+  const dispatch = useDispatch();
+
+  // Utiliser useForm avec yupResolver
+  const { register, handleSubmit, errors } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch("http://localhost:4700/login", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const user = await response.json();
+
+      dispatch(loginSuccess(user));
+    } catch (error) {
+      console.error("Login error:", error);
+      // Affichez les détails de l'erreur côté serveur
+      if (error.response) {
+        console.error("Server Error:", error.response.data);
+      }
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="email">Email</label>
+      <input id="email" name="email" ref={register} />
+      {errors?.email && <p>Ce champ est requis</p>}
+
+      <label htmlFor="password">Password</label>
+      <input id="password" name="password" type="password" ref={register} />
+      {errors?.password && <p>Ce champ est requis</p>}
+
+      {Object.keys(errors).length > 0 && (
+        <p>Des erreurs sont présentes dans le formulaire</p>
+      )}
+
+      <input type="submit" />
+    </form>
+  );
+};
+
+export default Login;

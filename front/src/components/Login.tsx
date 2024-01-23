@@ -2,21 +2,18 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../store/actions/actionConnection";
 
-type FormData = {
-  email: string;
-  password: string;
-};
-
 const Login = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
-  });
-  const [errors, setErrors] = useState<FormData>({ email: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "password") {
+      setPassword(e.target.value);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,8 +21,8 @@ const Login = () => {
 
     // Validation
     let formErrors = { email: "", password: "" };
-    if (!formData.email) formErrors.email = "Ce champ est requis";
-    if (!formData.password) formErrors.password = "Ce champ est requis";
+    if (!email) formErrors.email = "Ce champ est requis";
+    if (!password) formErrors.password = "Ce champ est requis";
     setErrors(formErrors);
 
     if (formErrors.email || formErrors.password) return;
@@ -37,19 +34,18 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email, password }),
       });
-
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
 
       const user = await response.json();
 
+      if (!user.connected) {
+        throw new Error("Email ou mot de passe non trouvé");
+      }
+      console.log("connecté");
       dispatch(loginSuccess(user));
     } catch (error) {
       console.error("Login error:", error);
-
       if (error.response) {
         console.error("Server Error:", error.response.data);
       }
@@ -59,12 +55,7 @@ const Login = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email</label>
-      <input
-        id="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-      />
+      <input id="email" name="email" value={email} onChange={handleChange} />
       {errors.email && <p>{errors.email}</p>}
 
       <label htmlFor="password">Password</label>
@@ -72,7 +63,7 @@ const Login = () => {
         id="password"
         name="password"
         type="password"
-        value={formData.password}
+        value={password}
         onChange={handleChange}
       />
       {errors.password && <p>{errors.password}</p>}

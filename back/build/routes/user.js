@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
             console.log(user.jwt);
         }
         else {
-            res.json({ connected: false });
+            res.status(404).json({ connected: false });
         }
     }
     catch (err) {

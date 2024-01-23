@@ -4,7 +4,7 @@ import { generateKeyPair, SignJWT, jwtVerify } from "jose";
 const bcrypt = require("bcrypt");
 
 export interface IRegister extends Document {
-  username?: string;
+  username: string;
   password: string;
   email: string;
   hashedPassword: string;

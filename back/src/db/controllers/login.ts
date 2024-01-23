@@ -1,19 +1,15 @@
+import Register from "../models/register";
 import { IRegister } from "../models/register";
-import UserService from "../services/UserService"; // Assurez-vous que ce chemin est correct
 
 class LoginController {
-  private userService: UserService;
-
-  constructor(userService: UserService) {
-    this.userService = userService;
-  }
-
-  async login(
+  static async login(
     email: string,
     password: string
   ): Promise<{ user: IRegister; jwt: string } | null> {
     try {
-      const register = await this.userService.findUserByEmail(email); // Utilisez userService ici
+      const register = await Register.findOne({ email }).select(
+        "+hashedPassword"
+      );
 
       if (!register) {
         console.log("User not found with email:", email);

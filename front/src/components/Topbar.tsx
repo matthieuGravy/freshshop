@@ -1,10 +1,21 @@
 import { NavLink, useMatch } from "react-router-dom";
-import { useState, Fragment, useEffect, useContext } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
+interface Link {
+  id: number;
+  to: string;
+  text: string;
+}
+
+interface NavLinkProps {
+  to: string;
+  text: string;
+}
+
 function Topbar() {
-  const [isNavVisible, setIsNavVisible] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState<boolean>(false);
+  const [isHidden, setIsHidden] = useState<boolean>(false);
 
   const { scrollYProgress } = useScroll();
   const { scrollY } = useScroll();
@@ -13,7 +24,7 @@ function Topbar() {
     setIsNavVisible(!isNavVisible);
   };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
     const previous = scrollY.getPrevious();
     if (latest > previous && latest > 100) {
       setIsHidden(true);
@@ -30,18 +41,16 @@ function Topbar() {
     }
   }, [scrollYProgress]);
 
-  const links = [
-    { id: 0, to: "/", text: "Home" },
-    { id: 1, to: "register", text: "Register" },
-    { id: 2, to: "contact", text: "Contact" },
-  ];
-  const linksLoggedIn = [
-    { id: 0, to: "profile", text: "Anime" },
-    { id: 1, to: "profile/settings", text: "Settings" },
+  const links: Link[] = [
+    { id: 0, to: "/", text: "home" },
+    { id: 1, to: "about", text: "about us" },
+    { id: 2, to: "shop", text: "shop" },
+    { id: 3, to: "gallery", text: "gallery" },
+    { id: 4, to: "contact", text: "contact us" },
   ];
 
-  const NavLinkComponent = (props) => {
-    const match = useMatch(props.to);
+  const NavLinkComponent = ({ to, text }: NavLinkProps) => {
+    const match = useMatch(to);
     const handleClick = () => {
       if (window.innerWidth <= 1023) {
         toggleNav();
@@ -51,12 +60,12 @@ function Topbar() {
       <li className="px-3">
         <NavLink
           onClick={handleClick}
-          to={props.to}
+          to={to}
           className={`px-2 py-1 hover:underline hover:transition-all hover:underline-offset-8 decoration-teal-400 ${
             match ? "bg-red-900" : ""
-          } transition-all duration-300 ease-in-out`}
+          } transition-all duration-300 ease-in-out text-transform: uppercase`}
         >
-          {props.text}
+          {text}
         </NavLink>
       </li>
     );
@@ -69,22 +78,16 @@ function Topbar() {
       </Fragment>
     ));
   }
-  function MaplinksLoggedIn() {
-    return linksLoggedIn.map((link) => (
-      <Fragment key={link.id}>
-        <NavLinkComponent to={link.to} text={link.text} />
-      </Fragment>
-    ));
-  }
+
   return (
-    <motion.header
+    <motion.nav
       variants={{ isVisible: { y: 0 }, isHidden: { y: -100 } }}
       initial={{ y: -100 }}
       animate={
         ({ y: 0, isHidden: { y: -100 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
-      className="fixed top-0 navbar h-14 flex flex-row justify-between flex justify-around h-8 text-slate-50 w-full bg-gray-950 z-50"
+      className="fixed top-0 navbar h-14 flex flex-row justify-between flex justify-around h-8 text-slate-50 w-full bg-gray-950 z-40"
     >
       <button
         onClick={toggleNav}
@@ -105,11 +108,9 @@ function Topbar() {
           />
         </svg>
       </button>
-      <button className="flex-initial w-36 grid place-items-center">
-        <img src={sora} alt="Sora" className="h-12" />
-      </button>
-      <nav
-        className={`z-50 lg:z-0 flex-1 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-1 lg:grid lg:place-items-center ${
+      <button className="flex-initial w-36 grid place-items-center"></button>
+      <section
+        className={`z-40 lg:z-0 flex-1 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-1 lg:grid lg:place-items-center ${
           isNavVisible ? "fixed" : "hidden"
         }`}
       >
@@ -133,42 +134,29 @@ function Topbar() {
               />
             </svg>
           </button>
-          {isLoggedIn ? <MaplinksLoggedIn /> : <Maplinks />}
+          <Maplinks />
         </ul>
-      </nav>
-
-      <section className="flex-1 flex justify-end ">
-        {isLoggedIn ? (
-          <>
-            <article></article>
-            <button className="mx-2 grid place-items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </button>
-            <button className="px-4">
-              <NavLink to="/logout" onClick={logout}>
-                Logout
-              </NavLink>
-            </button>
-          </>
-        ) : (
-          <button className="px-4 ">
-            <NavLink to="/login">Login</NavLink>
-          </button>
-        )}
       </section>
-    </motion.header>
+      <section className="flex-1 flex justify-end ">
+        <button className="mx-2 grid place-items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </button>
+      </section>
+    </motion.nav>
   );
 }
+
+export default Topbar;

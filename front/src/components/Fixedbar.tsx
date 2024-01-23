@@ -25,7 +25,7 @@ const Fixedbar = () => {
   };
 
   return (
-    <header>
+    <header className="h-60 bg-pink-200 z-50 fixed w-full">
       {user ? (
         <section>
           <p>Bonjour, {user.name}!</p>

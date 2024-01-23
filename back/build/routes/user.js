@@ -48,7 +48,7 @@ router.post("/login", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-router.post("/logout", (req, res) => {
+router.post("/logout", (_req, res) => {
     res.clearCookie("jwt");
     res.json({ disconnected: true });
     console.log("logout");

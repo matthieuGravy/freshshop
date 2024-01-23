@@ -50,7 +50,7 @@ router.post("/login", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/logout", (req: Request, res: Response) => {
+router.post("/logout", (_req: Request, res: Response) => {
   res.clearCookie("jwt");
   res.json({ disconnected: true });
   console.log("logout");

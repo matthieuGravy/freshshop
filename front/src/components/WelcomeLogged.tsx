@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store/";
-import Logout from "./Logout";
+
 import Login from "./Login";
 
 const WelcomeLogged = () => {
@@ -14,7 +14,6 @@ const WelcomeLogged = () => {
       {user ? (
         <article>
           <p>Bonjour, {user.email}!</p>
-          <Logout />
         </article>
       ) : (
         <Login />

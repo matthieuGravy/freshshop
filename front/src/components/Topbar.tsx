@@ -88,19 +88,18 @@ function Topbar() {
 
   return (
     <motion.header
-      variants={{ isVisible: { y: 0 }, isHidden: { y: -100 } }}
-      initial={{ y: -100 }}
+      variants={{ isVisible: { y: 0 }, isHidden: { y: -50 } }}
+      initial={{ y: -50 }}
       animate={
-        ({ y: 0, isHidden: { y: -100 } }, isHidden ? "isHidden" : "isVisible")
+        ({ y: 0, isHidden: { y: -50 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
-      className="fixed top-0 flex flex-col w-full bg-gray-200 z-40"
+      className="sticky top-0 flex flex-col w-full bg-gray-200 z-40"
     >
-      <header className="text-white flex flex-row justify-between">
+      <header className="text-center">
         <h1>Promotions</h1>
-        <div>X</div>
       </header>
-      <nav className=" h-14 flex flex-row justify-between flex justify-around text-slate-50">
+      <section className="bg-red-200 flex">
         <button
           onClick={toggleNav}
           className="lg:hidden xl:hidden flex-initial w-10  grid place-items-center "
@@ -120,9 +119,113 @@ function Topbar() {
             />
           </svg>
         </button>
+        <section className="flex-1 flex ">
+          <button className="mx-2 grid place-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
+          </button>
+        </section>
+        {user ? (
+          <ul className="flex-1 flex justify-end ">
+            {/* My acount*/}
+            <li>
+              <NavLink to="/my-account">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                  />
+                </svg>
+              </NavLink>
+            </li>
+            {/* <whishlist*/}
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                />
+              </svg>
+            </li>
+            {/* Cast */}
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                />
+              </svg>
+            </li>
+            <li className="px-3">
+              <Logout />
+            </li>
+          </ul>
+        ) : (
+          <ul className="flex-1 flex justify-end ">
+            <li>
+              <NavLink to="/login">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                  />
+                </svg>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          </ul>
+        )}
+      </section>
+      <nav className=" h-14 flex flex-row justify-between flex justify-around text-slate-50">
         <section
           className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center bg-blue-500 ${
-            isNavVisible ? "fixed" : "hidden"
+            isNavVisible ? "sticky" : "hidden"
           }`}
         >
           <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center flex-col lg:flex-row gap-y-5 min-h-screen lg:min-h-0 w-full md:w-1/2 bg-gray-950 lg:bg-transparent relative ">
@@ -145,51 +248,15 @@ function Topbar() {
                 />
               </svg>
             </button>
-            <button className="">
-              <figure>
+            <figure className="pb-12">
+              <button>
                 <img src={logo} alt="FreshShop logo" className="h-14" />
-              </figure>
-            </button>
-            <Maplinks />
-            <section className="flex-1 flex ">
-              <button className="mx-2 grid place-items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
               </button>
-            </section>
+            </figure>
+
+            <Maplinks />
           </ul>
         </section>
-        {user ? (
-          <ul>
-            <li>
-              <NavLink to="/my-account">My Account</NavLink>
-            </li>
-            <li className="px-3">
-              <Logout />
-            </li>
-          </ul>
-        ) : (
-          <ul className="flex-1 flex justify-end ">
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
-          </ul>
-        )}
       </nav>
     </motion.header>
   );

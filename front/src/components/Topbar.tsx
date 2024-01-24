@@ -1,6 +1,11 @@
 import { NavLink, useMatch } from "react-router-dom";
 import { useState, Fragment, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../store/";
+import logo from "../assets/images/logo.png";
+import Logout from "./Logout";
 
 interface Link {
   id: number;
@@ -14,6 +19,8 @@ interface NavLinkProps {
 }
 
 function Topbar() {
+  const user = useSelector((state: RootState) => state.user);
+
   const [isNavVisible, setIsNavVisible] = useState<boolean>(false);
   const [isHidden, setIsHidden] = useState<boolean>(false);
 
@@ -87,7 +94,7 @@ function Topbar() {
         ({ y: 0, isHidden: { y: -100 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
-      className="fixed top-0 flex flex-col w-full bg-gray-950 z-40"
+      className="fixed top-0 flex flex-col w-full bg-gray-200 z-40"
     >
       <header className="text-white flex flex-row justify-between">
         <h1>Promotions</h1>
@@ -113,9 +120,8 @@ function Topbar() {
             />
           </svg>
         </button>
-        <button className="flex-initial w-36 grid place-items-center"></button>
         <section
-          className={`z-40 lg:z-0 flex-1 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-1 lg:grid lg:place-items-center ${
+          className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center bg-blue-500 ${
             isNavVisible ? "fixed" : "hidden"
           }`}
         >
@@ -139,27 +145,51 @@ function Topbar() {
                 />
               </svg>
             </button>
+            <button className="">
+              <figure>
+                <img src={logo} alt="FreshShop logo" className="h-14" />
+              </figure>
+            </button>
             <Maplinks />
+            <section className="flex-1 flex ">
+              <button className="mx-2 grid place-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                  />
+                </svg>
+              </button>
+            </section>
           </ul>
         </section>
-        <section className="flex-1 flex justify-end ">
-          <button className="mx-2 grid place-items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
-        </section>
+        {user ? (
+          <ul>
+            <li>
+              <NavLink to="/my-account">My Account</NavLink>
+            </li>
+            <li className="px-3">
+              <Logout />
+            </li>
+          </ul>
+        ) : (
+          <ul className="flex-1 flex justify-end ">
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/register">Register</NavLink>
+            </li>
+          </ul>
+        )}
       </nav>
     </motion.header>
   );

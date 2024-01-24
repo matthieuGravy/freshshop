@@ -5,22 +5,22 @@ import { RootState } from "../store/";
 import Logout from "./Logout";
 import Login from "./Login";
 
-const Modal = () => {
+const WelcomeLogged = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <header className="h-10 bg-pink-200 z-50 w-full">
-      test
+    <section className="bg-pink-200 z-50 w-full">
+      <h2>Welcome</h2>
       {user ? (
-        <section>
+        <article>
           <p>Bonjour, {user.email}!</p>
           <Logout />
-        </section>
+        </article>
       ) : (
         <Login />
       )}
-    </header>
+    </section>
   );
 };
 
-export default Modal;
+export default WelcomeLogged;

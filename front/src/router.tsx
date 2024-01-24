@@ -6,6 +6,9 @@ import Contactpage from "./pages/Contactpage/Contactpage";
 import Gallerypage from "./pages/Gallerypage/Gallerypage";
 import Aboutpage from "./pages/Aboutpage/Aboutpage";
 import Shoppage from "./pages/Shoppage/Shoppage";
+import Registerpage from "./pages/Registerpage/Registerpage";
+import Profilepage from "./pages/Profilepage/Profilepage";
+import Loginpage from "./pages/Loginpage/Loginpage";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +20,9 @@ export const router = createBrowserRouter([
       { path: "/gallery", element: <Gallerypage /> },
       { path: "/about", element: <Aboutpage /> },
       { path: "/shop", element: <Shoppage /> },
+      { path: "/register", element: <Registerpage /> },
+      { path: "my-account", element: <Profilepage /> },
+      { path: "/login", element: <Loginpage /> },
     ],
   },
 ]);

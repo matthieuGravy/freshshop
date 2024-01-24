@@ -14,13 +14,14 @@ const Logout = () => {
       if (!response.ok) {
         throw new Error("Logout failed");
       }
+      console.log("déconnecté");
       dispatch(logout());
     } catch (error) {
       console.error("Logout error:", error);
     }
   };
 
-  return <button onClick={handleLogout}>Déconnexion</button>;
+  return <button onClick={handleLogout}>Deconnection</button>;
 };
 
 export default Logout;

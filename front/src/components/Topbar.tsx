@@ -64,12 +64,12 @@ function Topbar() {
       }
     };
     return (
-      <li className="px-3">
+      <li className="px-3 grid place-items-center">
         <NavLink
           onClick={handleClick}
           to={to}
-          className={`px-2 py-1 hover:underline hover:transition-all hover:underline-offset-8 decoration-teal-400 ${
-            match ? "bg-red-900" : ""
+          className={`px-2 hover:transition-all hover:text-green-600 ${
+            match ? "text-green-500" : ""
           } transition-all duration-300 ease-in-out text-transform: uppercase`}
         >
           {text}
@@ -94,12 +94,12 @@ function Topbar() {
         ({ y: 0, isHidden: { y: -50 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
-      className="sticky top-0 flex flex-col w-full bg-gray-200 z-40"
+      className="sticky top-0 flex flex-col w-full  z-40"
     >
-      <header className="text-center">
+      <header className="text-center bg-green-500">
         <h1>Promotions</h1>
       </header>
-      <section className="bg-red-200 flex">
+      <section className="flex bg-green-50 py-1">
         <button
           onClick={toggleNav}
           className="lg:hidden xl:hidden flex-initial w-10  grid place-items-center "
@@ -119,28 +119,27 @@ function Topbar() {
             />
           </svg>
         </button>
-        <section className="flex-1 flex ">
-          <button className="mx-2 grid place-items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              />
-            </svg>
-          </button>
-        </section>
+        <button className="mx-2 ">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </button>
+
         {user ? (
-          <ul className="flex-1 flex justify-end ">
+          <ul className="flex-1 flex justify-end pe-3">
             {/* My acount*/}
-            <li>
+            <li className="px-2">
               <NavLink to="/my-account">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +158,7 @@ function Topbar() {
               </NavLink>
             </li>
             {/* <whishlist*/}
-            <li>
+            <li className="px-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -176,7 +175,7 @@ function Topbar() {
               </svg>
             </li>
             {/* Cast */}
-            <li>
+            <li className="px-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -192,13 +191,13 @@ function Topbar() {
                 />
               </svg>
             </li>
-            <li className="px-3">
+            <li className="px-2">
               <Logout />
             </li>
           </ul>
         ) : (
-          <ul className="flex-1 flex justify-end ">
-            <li>
+          <ul className="flex-1 flex justify-end pe-3">
+            <li className="px-2">
               <NavLink to="/login">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -216,19 +215,19 @@ function Topbar() {
                 </svg>
               </NavLink>
             </li>
-            <li>
+            <li className="px-2">
               <NavLink to="/register">Register</NavLink>
             </li>
           </ul>
         )}
       </section>
-      <nav className=" h-14 flex flex-row justify-between flex justify-around text-slate-50">
+      <section className="flex flex-row justify-between flex justify-around">
         <section
-          className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center bg-blue-500 ${
+          className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center ${
             isNavVisible ? "sticky" : "hidden"
           }`}
         >
-          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center flex-col lg:flex-row gap-y-5 min-h-screen lg:min-h-0 w-full md:w-1/2 bg-gray-950 lg:bg-transparent relative ">
+          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center flex-col lg:flex-row gap-y-5 min-h-[110vh] lg:min-h-0 lg:h-14 lg:bg-green-50 w-full md:w-1/2  bg-green-50 lg:bg-transparent relative ">
             <button
               onClick={toggleNav}
               className="lg:hidden xl:hidden absolute right-5 top-5 "
@@ -248,16 +247,15 @@ function Topbar() {
                 />
               </svg>
             </button>
-            <figure className="pb-12">
-              <button>
-                <img src={logo} alt="FreshShop logo" className="h-14" />
-              </button>
+            <figure className="pb-12 lg:pb-0 flex justify-center lg:px-3">
+              <NavLink>
+                <img src={logo} alt="FreshShop logo" className="h-10" />
+              </NavLink>
             </figure>
-
             <Maplinks />
           </ul>
         </section>
-      </nav>
+      </section>
     </motion.header>
   );
 }

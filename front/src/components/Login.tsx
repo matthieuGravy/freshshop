@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { loginSuccess } from "../store/actions/actionConnection";
+import { ButtonSubmit } from "./Buttons";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -59,25 +61,40 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="email">Email</label>
-      <input id="email" name="email" value={email} onChange={handleChange} />
-      {errors.email && <p>{errors.email}</p>}
+      <h2 className="text-center text-4xl py-8">Connect Now</h2>
+      <section className="w-full flex flex-col lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 ">
+        {/*
+        <label htmlFor="email">Email</label>
+        */}
+        <input
+          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-600"
+          placeholder="Email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+        />
+        {errors.email && <p>{errors.email}</p>}
+        {/*
+        <label htmlFor="password">Password</label>
+         */}
 
-      <label htmlFor="password">Password</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        value={password}
-        onChange={handleChange}
-      />
-      {errors.password && <p>{errors.password}</p>}
+        <input
+          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-600"
+          placeholder="Password"
+          id="password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={handleChange}
+        />
 
-      {(errors.email || errors.password) && (
-        <p>Des erreurs sont présentes dans le formulaire</p>
-      )}
-
-      <input type="submit" />
+        {errors.password && <p>{errors.password}</p>}
+        {(errors.email || errors.password) && (
+          <p>Des erreurs sont présentes dans le formulaire</p>
+        )}
+        <ButtonSubmit text="Login" />
+      </section>
     </form>
   );
 };

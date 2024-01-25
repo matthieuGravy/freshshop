@@ -3,20 +3,22 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "../store/";
 
+import { HeroCat } from "./Hero";
 import Login from "./Login";
 
 const WelcomeLogged = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <section className="bg-pink-200 z-50 w-full">
-      <h2>Welcome</h2>
+    <section className="bg-green-50 w-full px-8 pb-8">
       {user ? (
         <article>
           <p>Bonjour, {user.email}!</p>
         </article>
       ) : (
-        <Login />
+        <HeroCat>
+          <Login />
+        </HeroCat>
       )}
     </section>
   );

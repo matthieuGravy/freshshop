@@ -68,7 +68,7 @@ function Topbar() {
         <NavLink
           onClick={handleClick}
           to={to}
-          className={`px-2 hover:transition-all hover:text-green-600 ${
+          className={`px-2 hover:transition-all hover:text-green-500 ${
             match ? "text-green-500" : ""
           } transition-all duration-300 ease-in-out text-transform: uppercase`}
         >
@@ -88,17 +88,14 @@ function Topbar() {
 
   return (
     <motion.header
-      variants={{ isVisible: { y: 0 }, isHidden: { y: -50 } }}
-      initial={{ y: -50 }}
+      variants={{ isVisible: { y: 0 }, isHidden: { y: -30 } }}
+      initial={{ y: -30 }}
       animate={
-        ({ y: 0, isHidden: { y: -50 } }, isHidden ? "isHidden" : "isVisible")
+        ({ y: 0, isHidden: { y: -30 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
       className="sticky top-0 flex flex-col w-full  z-40"
     >
-      <header className="text-center bg-green-500">
-        <h1>Promotions</h1>
-      </header>
       <section className="flex bg-green-50 py-1">
         <button
           onClick={toggleNav}
@@ -221,7 +218,7 @@ function Topbar() {
           </ul>
         )}
       </section>
-      <section className="flex flex-row justify-between flex justify-around">
+      <section className="flex flex-row justify-between flex justify-around lg:bg-green-50">
         <section
           className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center ${
             isNavVisible ? "sticky" : "hidden"

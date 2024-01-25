@@ -1,10 +1,13 @@
 import WelcomeLogged from "../../components/WelcomeLogged";
-
+import { HeroHome } from "../../components/Hero";
 const Homepage = () => {
   return (
     <>
-      <h1>Homepage</h1>
+      <section className="bg-green-50">
+        <HeroHome />
+      </section>
       <WelcomeLogged />
+      <h1>Homepage</h1>
     </>
   );
 };

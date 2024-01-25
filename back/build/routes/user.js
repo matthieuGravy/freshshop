@@ -17,7 +17,7 @@ router.post("/new-user", async (req, res) => {
         return;
     }
     try {
-        //sendWelcomeEmail(email);
+        //New mail(?)
         const register = await userRegistration.createRegister(username, password, email);
         res.json(register);
     }

@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const ButtonSubmit = ({ text }) => {
   return (
     <button
@@ -9,4 +11,26 @@ const ButtonSubmit = ({ text }) => {
   );
 };
 
-export { ButtonSubmit };
+interface ButtonMxProps {
+  children?: ReactNode;
+}
+const ButtonMx = ({ children }) => {
+  return <button className="mx-2">{children}</button>;
+};
+
+interface NavlinkerButtonProps {
+  to: string;
+  text: string;
+}
+const NavlinkerButton = ({ to, text }) => {
+  return (
+    <NavLink
+      to={to}
+      className="bg-red-50 px-4 border-2 border-stone-500 rounded-full :hover:bg-stone-500 :hover:text-white transition duration-300 ease-in-out"
+    >
+      {text}
+    </NavLink>
+  );
+};
+
+export { ButtonSubmit, ButtonMx, NavlinkerButton };

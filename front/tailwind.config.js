@@ -5,7 +5,7 @@ export default {
     extend: {
       backgroundImage: {
         "form-pattern":
-          "url(./assets/images-custom/pexels-tima-miroshnichenko-7879835.jpg)",
+          "url(./assets/images-custom/pexels-jack-sparrow-4198970.jpg)",
       },
     },
   },

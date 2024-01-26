@@ -20,3 +20,12 @@ export const loginSuccess = (user: User): UserActionTypes => ({
 export const logout = (): UserActionTypes => ({
   type: LOGOUT,
 });
+
+export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+
+export const signupSuccess = (user) => {
+  return {
+    type: SIGNUP_SUCCESS,
+    payload: user,
+  };
+};

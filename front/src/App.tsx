@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Topbar />
-      <main className="bg-stone-500 pt-20">
+      <main className="bg-stone-500 pt-8 lg:pt-20">
         <Outlet />
       </main>
     </>

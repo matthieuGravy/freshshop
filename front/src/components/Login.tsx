@@ -40,6 +40,7 @@ const Login = () => {
       });
 
       const user = await response.json();
+      console.log(user);
 
       if (!user.connected) {
         setErrors({
@@ -61,13 +62,13 @@ const Login = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="text-center text-4xl py-8">Connect Now</h2>
+      <h2 className="text-center text-4xl py-8 text-white">Connect Now</h2>
       <section className="w-full flex flex-col lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 ">
         {/*
         <label htmlFor="email">Email</label>
         */}
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-600"
+          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
           placeholder="Email"
           id="email"
           name="email"
@@ -80,7 +81,7 @@ const Login = () => {
          */}
 
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-600"
+          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
           placeholder="Password"
           id="password"
           name="password"

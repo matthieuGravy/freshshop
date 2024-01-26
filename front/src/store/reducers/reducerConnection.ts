@@ -2,6 +2,7 @@ import {
   UserActionTypes,
   LOGIN_SUCCESS,
   LOGOUT,
+  SIGNUP_SUCCESS,
 } from "../actions/actionConnection.ts";
 
 interface UserState {
@@ -10,6 +11,7 @@ interface UserState {
 
 const initialState: UserState = {
   user: null,
+  isConnected: false,
 };
 
 export const userReducer = (
@@ -19,6 +21,12 @@ export const userReducer = (
   switch (action.type) {
     case LOGIN_SUCCESS:
       return { ...state, user: action.payload };
+    case SIGNUP_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        isConnected: true,
+      };
     case LOGOUT:
       return { ...state, user: null };
     default:

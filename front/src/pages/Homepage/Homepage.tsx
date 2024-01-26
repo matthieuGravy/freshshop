@@ -1,5 +1,6 @@
 import WelcomeLogged from "../../components/WelcomeLogged";
 import { HeroHome } from "../../components/Hero";
+import Signup from "../../components/Signup";
 const Homepage = () => {
   return (
     <>
@@ -8,6 +9,7 @@ const Homepage = () => {
       </section>
       <WelcomeLogged />
       <h1>Homepage</h1>
+      <Signup />
     </>
   );
 };

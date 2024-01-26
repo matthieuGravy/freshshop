@@ -7,6 +7,7 @@ import { RootState } from "../store/";
 import Logout from "./Logout";
 import Maplinks from "./Navigation/Maplinks";
 
+import { ButtonMx } from "./Buttons";
 import CroixIcon from "./Icons/CroixIcon";
 import logo from "../assets/images/logo.png";
 import HamburgerIcon from "./Icons/HamburgerIcon";
@@ -63,10 +64,10 @@ function Topbar() {
           {/* hamburger */}
           <HamburgerIcon />
         </button>
-        <button className="mx-2 ">
+        <ButtonMx>
           {/* search */}
           <SearchIcon />
-        </button>
+        </ButtonMx>
 
         {user ? (
           <ul className="flex-1 flex justify-end pe-3">

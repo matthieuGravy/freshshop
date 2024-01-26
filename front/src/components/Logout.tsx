@@ -21,7 +21,7 @@ const Logout = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Deconnection</button>;
+  return <button onClick={handleLogout}>Disconnect</button>;
 };
 
 export default Logout;

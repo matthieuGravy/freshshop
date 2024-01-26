@@ -6,6 +6,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/";
 import logo from "../assets/images/logo.png";
 import Logout from "./Logout";
+import CroixIcon from "./Icons/CroixIcon";
+import HamburgerIcon from "./Icons/HamburgerIcon";
+import AccountIcon from "./Icons/AccountIcon";
+import WishIcon from "./Icons/WishIcon";
+import CastIcon from "./Icons/CastIcon";
+import SearchIcon from "./Icons/SearchIcon";
 
 interface Link {
   id: number;
@@ -94,43 +100,19 @@ function Topbar() {
         ({ y: 0, isHidden: { y: -30 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
-      className="sticky top-0 flex flex-col w-full  z-40"
+      className="fixed top-0 flex flex-col w-full  z-40"
     >
       <section className="flex bg-green-50 py-1">
         <button
           onClick={toggleNav}
           className="lg:hidden xl:hidden flex-initial w-10  grid place-items-center "
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
+          {/* hamburger */}
+          <HamburgerIcon />
         </button>
         <button className="mx-2 ">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-            />
-          </svg>
+          {/* search */}
+          <SearchIcon />
         </button>
 
         {user ? (
@@ -138,55 +120,17 @@ function Topbar() {
             {/* My acount*/}
             <li className="px-2">
               <NavLink to="/my-account">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
+                {/* account */}
+                <AccountIcon />
               </NavLink>
             </li>
             {/* <whishlist*/}
             <li className="px-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                />
-              </svg>
+              <WishIcon />
             </li>
             {/* Cast */}
             <li className="px-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
+              <CastIcon />
             </li>
             <li className="px-2">
               <Logout />
@@ -196,20 +140,8 @@ function Topbar() {
           <ul className="flex-1 flex justify-end pe-3">
             <li className="px-2">
               <NavLink to="/login">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-                  />
-                </svg>
+                {/* account */}
+                <AccountIcon />
               </NavLink>
             </li>
             <li className="px-2">
@@ -224,25 +156,13 @@ function Topbar() {
             isNavVisible ? "sticky" : "hidden"
           }`}
         >
-          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center flex-col lg:flex-row gap-y-5 min-h-[110vh] lg:min-h-0 lg:h-14 lg:bg-green-50 w-full md:w-1/2  bg-green-50 lg:bg-transparent relative ">
+          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center min-h-[110vh] flex-col lg:flex-row gap-y-5 lg:min-h-0 lg:h-14 bg-green-50 w-full md:w-1/2  lg:bg-transparent relative ">
             <button
               onClick={toggleNav}
               className="lg:hidden xl:hidden absolute right-5 top-5 "
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              {/* croix */}
+              <CroixIcon />
             </button>
             <figure className="pb-12 lg:pb-0 flex justify-center lg:px-3">
               <NavLink>

@@ -1,28 +1,19 @@
-import { NavLink, useMatch } from "react-router-dom";
-import { useState, Fragment, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useSelector } from "react-redux";
 
 import { RootState } from "../store/";
-import logo from "../assets/images/logo.png";
 import Logout from "./Logout";
+import Maplinks from "./Navigation/Maplinks";
+
 import CroixIcon from "./Icons/CroixIcon";
+import logo from "../assets/images/logo.png";
 import HamburgerIcon from "./Icons/HamburgerIcon";
 import AccountIcon from "./Icons/AccountIcon";
 import WishIcon from "./Icons/WishIcon";
 import CastIcon from "./Icons/CastIcon";
 import SearchIcon from "./Icons/SearchIcon";
-
-interface Link {
-  id: number;
-  to: string;
-  text: string;
-}
-
-interface NavLinkProps {
-  to: string;
-  text: string;
-}
 
 function Topbar() {
   const user = useSelector((state: RootState) => state.user);
@@ -53,44 +44,6 @@ function Topbar() {
       setIsNavVisible(false);
     }
   }, [scrollYProgress]);
-
-  const links: Link[] = [
-    { id: 0, to: "/", text: "home" },
-    { id: 1, to: "about", text: "about us" },
-    { id: 2, to: "shop", text: "shop" },
-    { id: 3, to: "gallery", text: "gallery" },
-    { id: 4, to: "contact", text: "contact us" },
-  ];
-
-  const NavLinkComponent = ({ to, text }: NavLinkProps) => {
-    const match = useMatch(to);
-    const handleClick = () => {
-      if (window.innerWidth <= 1023) {
-        toggleNav();
-      }
-    };
-    return (
-      <li className="px-3 grid place-items-center">
-        <NavLink
-          onClick={handleClick}
-          to={to}
-          className={`px-2 hover:transition-all hover:text-green-500 ${
-            match ? "text-green-500" : ""
-          } transition-all duration-300 ease-in-out text-transform: uppercase`}
-        >
-          {text}
-        </NavLink>
-      </li>
-    );
-  };
-
-  function Maplinks() {
-    return links.map((link) => (
-      <Fragment key={link.id}>
-        <NavLinkComponent to={link.to} text={link.text} />
-      </Fragment>
-    ));
-  }
 
   return (
     <motion.header

@@ -73,18 +73,22 @@ function Topbar() {
           <ul className="flex-1 flex justify-end pe-3">
             {/* My acount*/}
             <li className="px-2">
-              <NavLink to="/my-account">
+              <NavLink to="/my-account/account">
                 {/* account */}
                 <AccountIcon />
               </NavLink>
             </li>
             {/* <whishlist*/}
             <li className="px-2">
-              <WishIcon />
+              <NavLink to="/my-account/wishlist">
+                <WishIcon />
+              </NavLink>
             </li>
             {/* Cast */}
             <li className="px-2">
-              <CastIcon />
+              <NavLink to="/my-account/cast">
+                <CastIcon />
+              </NavLink>
             </li>
             <li className="px-2">
               <Logout />

@@ -9,6 +9,9 @@ import Shoppage from "./pages/Shoppage/Shoppage";
 import Registerpage from "./pages/Registerpage/Registerpage";
 import Profilepage from "./pages/Profilepage/Profilepage";
 import Loginpage from "./pages/Loginpage/Loginpage";
+import Castpage from "./pages/Profilepage/Castpage/Castpage";
+import Wishlistpage from "./pages/Profilepage/Wishlistpage/Wishlistpage";
+import Account from "./pages/Profilepage/Account/Account";
 
 export const router = createBrowserRouter([
   {
@@ -16,12 +19,20 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Homepage /> },
-      { path: "/contact", element: <Contactpage /> },
-      { path: "/gallery", element: <Gallerypage /> },
-      { path: "/about", element: <Aboutpage /> },
-      { path: "/shop", element: <Shoppage /> },
-      { path: "/register", element: <Registerpage /> },
-      { path: "my-account", element: <Profilepage /> },
+      { path: "contact", element: <Contactpage /> },
+      { path: "gallery", element: <Gallerypage /> },
+      { path: "about", element: <Aboutpage /> },
+      { path: "shop", element: <Shoppage /> },
+      { path: "register", element: <Registerpage /> },
+      {
+        path: "/my-account",
+        element: <Profilepage />,
+        children: [
+          { path: "account", element: <Account /> },
+          { path: "cast", element: <Castpage /> },
+          { path: "wishlist", element: <Wishlistpage /> },
+        ],
+      },
       { path: "/login", element: <Loginpage /> },
     ],
   },

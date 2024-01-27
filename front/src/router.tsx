@@ -12,6 +12,7 @@ import Loginpage from "./pages/Loginpage/Loginpage";
 import Castpage from "./pages/Profilepage/Castpage/Castpage";
 import Wishlistpage from "./pages/Profilepage/Wishlistpage/Wishlistpage";
 import Account from "./pages/Profilepage/Account/Account";
+import Signuppage from "./pages/Signuppage/Signuppage";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,8 @@ export const router = createBrowserRouter([
           { path: "wishlist", element: <Wishlistpage /> },
         ],
       },
-      { path: "/login", element: <Loginpage /> },
+      { path: "login", element: <Loginpage /> },
+      { path: "signup", element: <Signuppage /> },
     ],
   },
 ]);

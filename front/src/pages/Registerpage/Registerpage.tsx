@@ -1,5 +1,12 @@
+import Signup from "../../components/Signup";
+
 const Registerpage = () => {
-  return <div className="h-[200vh]">Registerpage</div>;
+  return (
+    <>
+      <div className="">Registerpage</div>
+      <Signup />
+    </>
+  );
 };
 
 export default Registerpage;

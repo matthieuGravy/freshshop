@@ -12,7 +12,6 @@ import Loginpage from "./pages/Loginpage/Loginpage";
 import Castpage from "./pages/Profilepage/Castpage/Castpage";
 import Wishlistpage from "./pages/Profilepage/Wishlistpage/Wishlistpage";
 import Account from "./pages/Profilepage/Account/Account";
-import Signuppage from "./pages/Signuppage/Signuppage";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +23,7 @@ export const router = createBrowserRouter([
       { path: "gallery", element: <Gallerypage /> },
       { path: "about", element: <Aboutpage /> },
       { path: "shop", element: <Shoppage /> },
-      { path: "register", element: <Registerpage /> },
+      { path: "signup", element: <Registerpage /> },
       {
         path: "/my-account",
         element: <Profilepage />,
@@ -35,7 +34,6 @@ export const router = createBrowserRouter([
         ],
       },
       { path: "login", element: <Loginpage /> },
-      { path: "signup", element: <Signuppage /> },
     ],
   },
 ]);

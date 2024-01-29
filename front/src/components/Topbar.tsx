@@ -103,7 +103,7 @@ function Topbar() {
               </NavLink>
             </li>
             <li className="px-2">
-              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/signup">Register</NavLink>
             </li>
           </ul>
         )}

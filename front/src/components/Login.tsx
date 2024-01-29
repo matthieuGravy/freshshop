@@ -5,10 +5,10 @@ import { loginSuccess } from "../store/actions/actionConnection";
 import { ButtonSubmit } from "./Buttons";
 
 const Login = () => {
-  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "email") {
@@ -41,6 +41,7 @@ const Login = () => {
 
       const user = await response.json();
       console.log(user);
+      console.log(user?.email);
 
       if (!user.connected) {
         setErrors({

@@ -5,7 +5,7 @@ import { RootState } from "../store/";
 
 import { HeroCat } from "./Hero";
 import Login from "./Login";
-
+import Signup from "./Signup";
 import { NavlinkerButton } from "./Buttons";
 
 const WelcomeLogged = () => {
@@ -20,7 +20,7 @@ const WelcomeLogged = () => {
       ) : (
         <HeroCat
           linkone={<NavlinkerButton to="/signup" text="Sign up" />}
-          linktwo={<NavlinkerButton to="/login" text="Log in" />}
+          linktwo={<NavlinkerButton to="/contact" text="Contact" />}
         >
           <Login />
         </HeroCat>
@@ -29,4 +29,4 @@ const WelcomeLogged = () => {
   );
 };
 
-export default WelcomeLogged;
+export { WelcomeLogged };

@@ -5,7 +5,7 @@ class LoginController {
   static async login(
     email: string,
     password: string
-  ): Promise<{ user: IRegister; jwt: string } | null> {
+  ): Promise<{ user: IRegister; jwt: string; email: string } | null> {
     try {
       const register = await Register.findOne({ email }).select(
         "+hashedPassword"
@@ -21,7 +21,7 @@ class LoginController {
       if (passwordMatch) {
         console.log("User logged in successfully:", email);
         const jwt = await register.generateJWT(); // Générer un JWT pour l'utilisateur
-        return { user: register, jwt }; // Retourner l'utilisateur et le JWT
+        return { user: register, jwt, email }; // Retourner l'utilisateur et le JWT
       } else {
         console.log("Invalid password for user:", email);
         return null;

@@ -1,4 +1,4 @@
-import WelcomeLogged from "../../components/WelcomeLogged";
+import { WelcomeLogged } from "../../components/WelcomeLogged";
 import { HeroHome } from "../../components/Hero";
 import Signup from "../../components/Signup";
 const Homepage = () => {

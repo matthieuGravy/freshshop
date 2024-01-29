@@ -6,10 +6,11 @@ import { RootState } from "./store/";
 import Topbar from "./components/Topbar";
 
 const App = () => {
+  let styeMain = "bg-green-50 pt-8 lg:pt-20";
   return (
     <>
       <Topbar />
-      <main className="bg-stone-500 pt-8 lg:pt-20">
+      <main className={styeMain}>
         <Outlet />
       </main>
     </>

@@ -26,7 +26,7 @@ const NavlinkerButton = ({ to, text }) => {
   return (
     <NavLink
       to={to}
-      className="bg-red-50 px-4 border-2 border-stone-500 rounded-full :hover:bg-stone-500 :hover:text-white transition duration-300 ease-in-out"
+      className="bg-green-50 px-4 border-2 border-stone-500 rounded-full :hover:bg-stone-500 :hover:text-white transition duration-300 ease-in-out"
     >
       {text}
     </NavLink>

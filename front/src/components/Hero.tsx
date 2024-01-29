@@ -1,7 +1,9 @@
 import React, { ReactNode } from "react";
+import { Hone } from "./titles";
 
 interface HeroHomeProps {
   children?: ReactNode;
+  titre?: ReactNode;
 }
 interface HeroCatProps {
   children?: ReactNode;
@@ -9,13 +11,13 @@ interface HeroCatProps {
   linktwo?: ReactNode;
 }
 
-const HeroHome: React.FC<HeroHomeProps> = ({ children }) => {
+const HeroHome: React.FC<HeroHomeProps> = ({ titre, children }) => {
+  const title =
+    "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
+  const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
   return (
     <>
-      <h1 className="text-7xl p-10">
-        Embark on a Fresh Journey: Cultivate Well-being with Our Premium
-        Selection of Fruits and Vegetables!
-      </h1>
+      <Hone titre={title} className={styleTitle} />
       {children}
     </>
   );

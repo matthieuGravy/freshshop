@@ -17,7 +17,7 @@ const WelcomeForm: React.FC<WelcomeFormProps> = ({
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <section className="bg-green-50 w-full px-8 pb-8">
+    <>
       {user ? (
         <article>
           <p>Bonjour, {user.email}!</p>
@@ -26,7 +26,7 @@ const WelcomeForm: React.FC<WelcomeFormProps> = ({
       ) : (
         children
       )}
-    </section>
+    </>
   );
 };
 

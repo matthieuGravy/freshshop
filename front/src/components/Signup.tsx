@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import { signupSuccess } from "../store/actions/actionConnection";
 import { ButtonSubmit } from "./Buttons";
 
-const Signup = () => {
+interface SignupProps {
+  children?: React.ReactNode;
+}
+const Signup: React.FC<SignupProps> = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -39,7 +42,7 @@ const Signup = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2 className="text-center text-4xl py-8 text-white">Sign Up Now</h2>
+      {children}
       <input
         type="text"
         name="username"

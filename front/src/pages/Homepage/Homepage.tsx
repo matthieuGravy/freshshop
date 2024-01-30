@@ -4,8 +4,7 @@ import Signup from "../../components/Signup";
 import { HeroCat } from "../../components/Hero";
 import Login from "../../components/Login";
 import { NavlinkerButton } from "../../components/Buttons";
-import { Hone } from "../../components/titles";
-
+import Heading from "../../components/JSXML/Heading";
 const Homepage = () => {
   let styleSectionOne = "bg-green-50 xl:w-10/12 m-auto";
   let styleSectiontwo = "bg-stone-500";
@@ -15,7 +14,7 @@ const Homepage = () => {
   return (
     <>
       <section className={styleSectionOne}>
-        <HeroHome titre={<Hone titre={title} className={styleTitle} />} />
+        <HeroHome titre={<Heading titre={title} className={styleTitle} />} />
         <section className="bg-green-50 w-full px-8 pb-8">
           <WelcomeForm
             children={

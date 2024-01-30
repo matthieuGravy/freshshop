@@ -48,10 +48,10 @@ function Topbar() {
 
   return (
     <motion.header
-      variants={{ isVisible: { y: 0 }, isHidden: { y: -30 } }}
-      initial={{ y: -30 }}
+      variants={{ isVisible: { y: 0 }, isHidden: { y: -32 } }}
+      initial={{ y: -32 }}
       animate={
-        ({ y: 0, isHidden: { y: -30 } }, isHidden ? "isHidden" : "isVisible")
+        ({ y: 0, isHidden: { y: -32 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
       className="fixed top-0 flex flex-col w-full  z-40"
@@ -64,10 +64,6 @@ function Topbar() {
           {/* hamburger */}
           <HamburgerIcon />
         </button>
-        <ButtonMx>
-          {/* search */}
-          <SearchIcon />
-        </ButtonMx>
 
         {user ? (
           <ul className="flex-1 flex justify-end pe-3">

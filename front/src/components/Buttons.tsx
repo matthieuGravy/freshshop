@@ -33,4 +33,11 @@ const NavlinkerButton = ({ to, text }) => {
   );
 };
 
-export { ButtonSubmit, ButtonMx, NavlinkerButton };
+interface ButtonBuyProps {
+  text: ReactNode;
+}
+const ButtonBuy = ({ text }) => {
+  return <button>{text}</button>;
+};
+
+export { ButtonSubmit, ButtonMx, NavlinkerButton, ButtonBuy };

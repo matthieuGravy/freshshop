@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
 const configuresCors_1 = __importDefault(require("./config/configuresCors"));
 const winstonConfig_1 = __importDefault(require("./config/winstonConfig"));
 const index_1 = __importDefault(require("./db/index"));
@@ -15,6 +16,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 (0, index_1.default)();
 app.use("/", user_1.default);
+app.use("/assets", express_1.default.static(path_1.default.join(__dirname, "assets/")));
 // Utilisation du logger
 winstonConfig_1.default.info("Ceci est un message d'information dans le fichier journal.");
 winstonConfig_1.default.info("Server started");

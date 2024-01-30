@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import path from "path";
 
 import configureCors from "./config/configuresCors";
 import logger from "./config/winstonConfig";
@@ -16,6 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 app.use("/", newUser);
+app.use("/assets", express.static(path.join(__dirname, "assets/")));
+
 // Utilisation du logger
 logger.info("Ceci est un message d'information dans le fichier journal.");
 logger.info("Server started");

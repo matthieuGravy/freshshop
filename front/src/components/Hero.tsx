@@ -12,17 +12,17 @@ interface HeroCatProps {
 }
 
 const HeroHome: React.FC<HeroHomeProps> = ({ titre, children }) => {
-  const title =
-    "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
-  const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
   return (
     <>
-      <Hone titre={title} className={styleTitle} />
+      {titre}
       {children}
     </>
   );
 };
 
+{
+  /* Hero Home */
+}
 const HeroCat: React.FC<HeroCatProps> = ({ children, linkone, linktwo }) => {
   return (
     <>
@@ -31,7 +31,6 @@ const HeroCat: React.FC<HeroCatProps> = ({ children, linkone, linktwo }) => {
           <li className=" text-center pb-2">{linkone}</li>
           <li className="  text-center pb-2 ">{linktwo}</li>
         </ul>
-
         <section className="absolute z-10 center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {children}
         </section>

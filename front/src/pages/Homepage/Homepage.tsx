@@ -4,14 +4,18 @@ import Signup from "../../components/Signup";
 import { HeroCat } from "../../components/Hero";
 import Login from "../../components/Login";
 import { NavlinkerButton } from "../../components/Buttons";
+import { Hone } from "../../components/titles";
 
 const Homepage = () => {
   let styleSectionOne = "bg-green-50 xl:w-10/12 m-auto";
   let styleSectiontwo = "bg-stone-500";
+  const title =
+    "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
+  const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
   return (
     <>
       <section className={styleSectionOne}>
-        <HeroHome />
+        <HeroHome titre={<Hone titre={title} className={styleTitle} />} />
         <section className="bg-green-50 w-full px-8 pb-8">
           <WelcomeForm
             children={

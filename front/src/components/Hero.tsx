@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Hone } from "./titles";
 
 interface HeroHomeProps {
   children?: ReactNode;

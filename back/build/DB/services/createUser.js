@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const register_1 = __importDefault(require("../models/register"));
 const profile_1 = __importDefault(require("../models/profile"));
-const profileUser_1 = __importDefault(require("./profileUser"));
+const ProfileService_1 = __importDefault(require("./ProfileService"));
 class CreateUser {
     async createRegister(username, password, email) {
         const newRegister = new register_1.default({
@@ -27,7 +27,7 @@ class CreateUser {
             picture: "",
             description: "",
         };
-        await profileUser_1.default.createOrUpdateProfile(profileData); // Utiliser la méthode correcte de ProfileService
+        await ProfileService_1.default.createOrUpdateProfile(profileData); // Utiliser la méthode correcte de ProfileService
         const jwt = await savedRegister.generateJWT();
         savedRegister.jwt = jwt;
         return await savedRegister.save();

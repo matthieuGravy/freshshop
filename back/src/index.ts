@@ -4,6 +4,7 @@ import path from "path";
 import configureCors from "./config/configuresCors";
 import logger from "./config/winstonConfig";
 import connectDB from "./db/index";
+import profile from "./routes/profile";
 
 import newUser from "./routes/user";
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 app.use("/", newUser);
+app.use("/", profile);
 app.use("/assets", express.static(path.join(__dirname, "assets/")));
 
 // Utilisation du logger

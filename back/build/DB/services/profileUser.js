@@ -5,13 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const profile_1 = __importDefault(require("../models/profile"));
 class ProfileService {
-    async createOrUpdateProfile(profileData) {
-        const profile = await profile_1.default.findOneAndUpdate({ userId: profileData.userId }, // critère de recherche
-        profileData, // nouvelles données
-        { new: true, upsert: true } // options
-        );
-        // Renvoie le profil complet après sa création ou sa mise à jour
-        return profile;
+    static createOrUpdateProfile(profileData) {
+        return profile_1.default.createOrUpdateProfile(profileData);
     }
 }
-exports.default = new ProfileService();
+exports.default = ProfileService;

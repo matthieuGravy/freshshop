@@ -1,6 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
-export interface IProfile extends Document {
+interface IProfile extends Document {
   userId: mongoose.Schema.Types.ObjectId; // Référence au modèle Register IRegister
   firstname: string;
   lastname: string;
@@ -12,7 +12,9 @@ export interface IProfile extends Document {
   country: string;
   picture: string;
   description: string;
-  posts: mongoose.Types.ObjectId[]; // tableau d'IDs de publications
+}
+interface IProfileModel extends Model<IProfile> {
+  createOrUpdateProfile(profileData: Partial<IProfile>): Promise<IProfile>;
 }
 
 const profileSchema = new Schema<IProfile>(
@@ -78,6 +80,24 @@ const profileSchema = new Schema<IProfile>(
   }
 );
 
-const Profile = mongoose.model<IProfile>("Profile", profileSchema);
+profileSchema.statics.createOrUpdateProfile = async function (
+  profileData: Partial<IProfile>
+) {
+  const profile = await this.findOne({ _id: profileData._id });
+  if (profile) {
+    // Si le profil existe déjà, sinon màj
+    Object.assign(profile, profileData);
+    return profile.save();
+  } else {
+    // Sinon, créer un nouveau profil
+    return this.create(profileData);
+  }
+};
+
+const Profile = mongoose.model<IProfile, IProfileModel>(
+  "Profile",
+  profileSchema
+);
 
 export default Profile;
+export { IProfile, IProfileModel };

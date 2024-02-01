@@ -2,7 +2,7 @@ import Register from "../models/register";
 import { IRegister } from "../models/register";
 import { IProfile } from "../models/profile";
 import Profile from "../models/profile";
-import ProfileService from "./profileUser";
+import ProfileService from "./ProfileService";
 
 class CreateUser {
   async createRegister(

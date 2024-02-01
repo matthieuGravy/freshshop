@@ -55,6 +55,7 @@ const Login: React.FC<Loginprops> = ({ children }) => {
       }
 
       console.log("connecté");
+      localStorage.setItem("userId", user.id); // stock l'id
       dispatch(loginSuccess(user));
     } catch (error) {
       console.error("Login error:", error);

@@ -36,8 +36,13 @@ router.post("/login", async (req, res) => {
                 // secure: true, // Décommenter en https
                 //sameSite: "strict", // Décommenter en https
             });
-            res.json({ connected: true, jwt: user.jwt, email: user.email });
-            console.log(user.jwt);
+            res.json({
+                connected: true,
+                jwt: user.jwt,
+                email: user.email,
+                id: user.user.id,
+            });
+            console.log(user.jwt, user.email, user.user.id);
         }
         else {
             res.status(404).json({ connected: false });

@@ -1,6 +1,8 @@
 import WelcomeForm from "../../components/WelcomeForm";
 import Login from "../../components/Login";
 import { NavlinkerButton } from "../../components/Buttons";
+import AccountForm from "../../../components/Form/AccountForm";
+
 const Loginpage = () => {
   return (
     <div>

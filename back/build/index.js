@@ -17,7 +17,7 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 (0, index_1.default)();
 app.use("/", user_1.default);
-app.use("/", profile_1.default);
+app.use("/profile", profile_1.default);
 app.use("/assets", express_1.default.static(path_1.default.join(__dirname, "assets/")));
 // Utilisation du logger
 winstonConfig_1.default.info("Ceci est un message d'information dans le fichier journal.");

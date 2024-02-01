@@ -4,14 +4,11 @@ interface IProfile extends Document {
   userId: mongoose.Schema.Types.ObjectId; // Référence au modèle Register IRegister
   firstname: string;
   lastname: string;
-  birthdate: Date | null;
   genre: string;
   street: string;
   houseNumber: string;
   city: string;
   country: string;
-  picture: string;
-  description: string;
 }
 interface IProfileModel extends Model<IProfile> {
   createOrUpdateProfile(profileData: Partial<IProfile>): Promise<IProfile>;
@@ -31,11 +28,6 @@ const profileSchema = new Schema<IProfile>(
     },
     lastname: {
       type: String,
-      required: false,
-      unique: false,
-    },
-    birthdate: {
-      type: Date,
       required: false,
       unique: false,
     },
@@ -60,16 +52,6 @@ const profileSchema = new Schema<IProfile>(
       unique: false,
     },
     country: {
-      type: String,
-      required: false,
-      unique: false,
-    },
-    picture: {
-      type: String,
-      required: false,
-      unique: false,
-    },
-    description: {
       type: String,
       required: false,
       unique: false,

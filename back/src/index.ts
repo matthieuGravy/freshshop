@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 connectDB();
 
 app.use("/", newUser);
-app.use("/", profile);
+app.use("/profile", profile);
 app.use("/assets", express.static(path.join(__dirname, "assets/")));
 
 // Utilisation du logger

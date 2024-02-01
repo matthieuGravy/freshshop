@@ -40,11 +40,6 @@ const profileSchema = new mongoose_1.Schema({
         required: false,
         unique: false,
     },
-    birthdate: {
-        type: Date,
-        required: false,
-        unique: false,
-    },
     genre: {
         type: String,
         required: false,
@@ -66,16 +61,6 @@ const profileSchema = new mongoose_1.Schema({
         unique: false,
     },
     country: {
-        type: String,
-        required: false,
-        unique: false,
-    },
-    picture: {
-        type: String,
-        required: false,
-        unique: false,
-    },
-    description: {
         type: String,
         required: false,
         unique: false,

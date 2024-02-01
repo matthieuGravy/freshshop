@@ -18,14 +18,11 @@ class CreateUser {
             userId: savedRegister._id, // Utiliser l'ID du nouvel utilisateur
             firstname: "",
             lastname: "",
-            birthdate: null,
             genre: "",
             street: "",
             houseNumber: "",
             city: "",
             country: "",
-            picture: "",
-            description: "",
         };
         await ProfileService_1.default.createOrUpdateProfile(profileData); // Utiliser la méthode correcte de ProfileService
         const jwt = await savedRegister.generateJWT();

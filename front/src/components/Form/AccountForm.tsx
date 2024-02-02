@@ -143,6 +143,8 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
       }
     }
   };
+  let styleSelect =
+    "w-64 bg-orange-300  border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
   let textButton = "Confirm";
   let sectionStyle =
     "pt-14 rounded-xl px-8 m-auto max-w-xl bg-orange-300 grid grid-cols-2 lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 max-width";
@@ -153,7 +155,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
     <form className="w-full" onSubmit={handleSubmit}>
       {children}
       <section className={sectionStyle}>
-        <label htmlFor="firstname">firstname</label>
+        <label htmlFor="firstname">Firstname:</label>
         <input
           className={inputStyle}
           placeholder="firstname"
@@ -164,7 +166,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
           onChange={handleChange}
         />
         {errors.firstname && <p>{errors.firstname}</p>}
-        <label htmlFor="lastname">lastname</label>
+        <label htmlFor="lastname">Lastname:</label>
         <input
           className={inputStyle}
           placeholder="lastname"
@@ -176,8 +178,12 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         />
         {errors.genre && <p>{errors.genre}</p>}
 
-        <label htmlFor="genre">Gender :</label>
-        <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+        <label htmlFor="genre">Gender:</label>
+        <select
+          value={genre}
+          className={styleSelect}
+          onChange={(e) => setGenre(e.target.value)}
+        >
           <option value="">--Select a gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
@@ -185,7 +191,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         </select>
 
         {errors.street && <p>{errors.street}</p>}
-        <label htmlFor="street">street</label>
+        <label htmlFor="street">Street:</label>
         <input
           className={inputStyle}
           placeholder="street"
@@ -198,7 +204,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
 
         {errors.houseNumber && <p>{errors.houseNumber}</p>}
 
-        <label htmlFor="houseNumber">houseNumber</label>
+        <label htmlFor="houseNumber">House number:</label>
         <input
           className={inputStyle}
           placeholder="houseNumber"
@@ -209,7 +215,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
           onChange={handleChange}
         />
         {errors.city && <p>{errors.city}</p>}
-        <label htmlFor="city">city</label>
+        <label htmlFor="city">City:</label>
         <input
           className={inputStyle}
           placeholder="city"
@@ -221,7 +227,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         />
 
         {errors.country && <p>{errors.country}</p>}
-        <label htmlFor="country">country</label>
+        <label htmlFor="country">Country:</label>
         <input
           className={inputStyle}
           placeholder="country"

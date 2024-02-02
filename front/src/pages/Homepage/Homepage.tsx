@@ -6,7 +6,7 @@ import Login from "../../components/Login";
 import { NavlinkerButton } from "../../components/Buttons";
 import Heading from "../../components/JSXML/Heading";
 const Homepage = () => {
-  let styleSectionOne = "bg-orange-50 xl:w-10/12 m-auto";
+  let styleSectionOne = "bg-stone-50 xl:w-10/12 m-auto pt-12";
   let styleSectiontwo = "bg-stone-500";
   const title =
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";

@@ -56,7 +56,7 @@ function Topbar() {
       transition={{ duration: 0.3 }}
       className="fixed top-0 flex flex-col w-full  z-40"
     >
-      <section className="flex bg-orange-50 py-1">
+      <section className="flex bg-orange-500 py-1">
         <button
           onClick={toggleNav}
           className="lg:hidden xl:hidden flex-initial w-10  grid place-items-center "
@@ -104,7 +104,7 @@ function Topbar() {
           </ul>
         )}
       </section>
-      <section className="flex flex-row justify-between flex justify-around lg:bg-orange-50">
+      <section className="flex flex-row justify-between flex justify-around lg:bg-orange-500">
         <section
           className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 top:-10 lg:grid lg:place-items-center ${
             isNavVisible ? "sticky" : "hidden"

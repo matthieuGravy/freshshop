@@ -26,7 +26,7 @@ const HeroCat: React.FC<HeroCatProps> = ({ children, linkone, linktwo }) => {
   return (
     <>
       <section className="h-[30rem] bg-form-pattern bg-center bg-cover rounded-2xl shadow-br relative">
-        <ul className="absolute z-10 left-0 top-0 px-6  bg-green-50 rounded-br-2xl">
+        <ul className="absolute z-10 left-0 top-0 px-6  bg-stone-50 rounded-br-2xl">
           <li className=" text-center pb-2">{linkone}</li>
           <li className="  text-center pb-2 ">{linktwo}</li>
         </ul>

@@ -3,7 +3,7 @@ import ProfileService from "../db/services/ProfileService";
 
 const router: Router = express.Router();
 
-router.post("/:id", async (req: Request, res: Response) => {
+router.put("/:id", async (req: Request, res: Response) => {
   try {
     const profileData = { ...req.body, userId: req.params.id };
     const profile = await ProfileService.createOrUpdateProfile(profileData);

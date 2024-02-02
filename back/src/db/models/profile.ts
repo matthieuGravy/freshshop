@@ -65,7 +65,8 @@ const profileSchema = new Schema<IProfile>(
 profileSchema.statics.createOrUpdateProfile = async function (
   profileData: Partial<IProfile>
 ) {
-  const profile = await this.findOne({ _id: profileData._id });
+  const profile = await this.findOne({ userId: profileData.userId });
+
   if (profile) {
     // Si le profil existe déjà, sinon màj
     Object.assign(profile, profileData);

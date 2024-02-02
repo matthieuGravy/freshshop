@@ -88,7 +88,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
 
     try {
       const response = await fetch(`http://localhost:4700/profile/${id}`, {
-        method: "POST",
+        method: "PUT",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
@@ -108,8 +108,13 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json(); // Si vous attendez une réponse JSON du serveur
-      console.log(data);
+      const text = await response.text(); // Lire le corps en tant que texte
+      if (text.length > 0) {
+        const data = JSON.parse(text); // Parser le texte en tant que JSON
+        console.log(data);
+      } else {
+        console.error(`Error: Empty response body`);
+      }
     } catch (error) {
       console.error("Login error:", error);
       if (error.response) {

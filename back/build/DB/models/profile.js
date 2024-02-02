@@ -69,7 +69,7 @@ const profileSchema = new mongoose_1.Schema({
     collection: "profile",
 });
 profileSchema.statics.createOrUpdateProfile = async function (profileData) {
-    const profile = await this.findOne({ _id: profileData._id });
+    const profile = await this.findOne({ userId: profileData.userId });
     if (profile) {
         // Si le profil existe déjà, sinon màj
         Object.assign(profile, profileData);

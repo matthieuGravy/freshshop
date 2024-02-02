@@ -7,12 +7,13 @@ import WishIcon from "../../components/Icons/WishIcon";
 import FilterIcon from "../../components/Icons/FilterIcon";
 import SearchIcon from "../../components/Icons/SearchIcon";
 
+import FetchProducts from "../../components/Data/FetchProducts";
+
 const Shoppage = () => {
   const title =
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
   const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
   const titleCard = "kiwi";
-  const styleH3 = "text-orange-500 font-medium text-xl";
 
   return (
     <>
@@ -33,62 +34,7 @@ const Shoppage = () => {
         </header>
         <section className="col-span-3  py-6 px-6 ">
           <section className="grid auto-rows-max grid-cols-4 place-items-center gap-y-16 bg-stone-100 py-12 rounded-lg">
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
-            <ProductCard
-              title={
-                <Heading level="h3" titre={titleCard} className={styleH3} />
-              }
-              price={10}
-              button1={<ButtonBuy text={<CaddieIcon />} />}
-              button2={<ButtonBuy text={<WishIcon />} />}
-            />
+            <FetchProducts />
           </section>
         </section>
         <section className="py-6 px-6">

@@ -34,7 +34,6 @@ const FetchProfile: React.FC<FetchProfileProps> = ({ id, children }) => {
   useEffect(() => {
     fetchProfileId();
     const intervalId = setInterval(fetchProfileId, 5000); // Polling toutes les 5 secondes
-
     return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, [id]);
 

@@ -315,15 +315,49 @@ const productList: IProductDocument[] = [
 ];
 
 class ProductService {
-  async addProducts(products: IProductDocument[]) {
+  async addProduct(
+    product: IProductDocument
+  ): Promise<IProductDocument | null> {
     try {
-      await Product.insertMany(products);
-      console.log("Produits ajoutés avec succès à la base de données.");
+      const existingProduct = await Product.findOne({ name: product.name });
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return null;
+      }
+      const newProduct = await new Product(product).save();
+      console.log("Produit ajouté avec succès à la base de données.");
+      return newProduct;
     } catch (error) {
       console.error(
-        "Erreur lors de l'ajout des produits à la base de données :",
+        "Erreur lors de l'ajout du produit à la base de données :",
         error
       );
+      return null;
+    }
+  }
+  async addProducts(
+    products: IProductDocument[]
+  ): Promise<(IProductDocument | null)[]> {
+    const addedProducts: (IProductDocument | null)[] = [];
+
+    for (const product of products) {
+      const addedProduct = await this.addProduct(product);
+      addedProducts.push(addedProduct);
+    }
+
+    return addedProducts;
+  }
+  async getProducts(): Promise<IProductDocument[]> {
+    try {
+      const products = await Product.find();
+      console.log("Produits récupérés avec succès de la base de données.");
+      return products;
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des produits de la base de données :",
+        error
+      );
+      return []; // Retourne un tableau vide en cas d'erreur
     }
   }
 }

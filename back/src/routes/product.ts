@@ -4,7 +4,7 @@ const router = Router();
 
 const productService = new ProductService();
 
-router.post("/products", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response) => {
   try {
     await productService.addProducts(req.body);
     res
@@ -13,6 +13,18 @@ router.post("/products", async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).send({
       error: "Erreur lors de l'ajout des produits à la base de données.",
+    });
+  }
+});
+
+router.get("/", async (_req: Request, res: Response) => {
+  try {
+    const products = await productService.getProducts();
+    res.json(products);
+  } catch (error) {
+    res.status(500).send({
+      error:
+        "Erreur lors de la récupération des produits dans la base de données.",
     });
   }
 });

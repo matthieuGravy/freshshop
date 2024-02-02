@@ -7,6 +7,7 @@ import connectDB from "./db/index";
 
 import profile from "./routes/profile";
 import newUser from "./routes/user";
+import product from "./routes/product";
 
 const app: Application = express();
 const port = process.env.PORT || 4700;
@@ -20,6 +21,7 @@ connectDB();
 app.use("/", newUser);
 app.use("/profile", profile);
 app.use("/assets", express.static(path.join(__dirname, "assets/")));
+app.use("/products", product);
 
 // Utilisation du logger
 logger.info("Ceci est un message d'information dans le fichier journal.");

@@ -10,6 +10,7 @@ const winstonConfig_1 = __importDefault(require("./config/winstonConfig"));
 const index_1 = __importDefault(require("./db/index"));
 const profile_1 = __importDefault(require("./routes/profile"));
 const user_1 = __importDefault(require("./routes/user"));
+const product_1 = __importDefault(require("./routes/product"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 4700;
 (0, configuresCors_1.default)(app);
@@ -19,6 +20,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.use("/", user_1.default);
 app.use("/profile", profile_1.default);
 app.use("/assets", express_1.default.static(path_1.default.join(__dirname, "assets/")));
+app.use("/products", product_1.default);
 // Utilisation du logger
 winstonConfig_1.default.info("Ceci est un message d'information dans le fichier journal.");
 winstonConfig_1.default.info("Server started");

@@ -11,6 +11,7 @@ interface IProfile extends Document {
   country: string;
 }
 interface IProfileModel extends Model<IProfile> {
+  getProfile(userId: string): Promise<IProfile>;
   createOrUpdateProfile(profileData: Partial<IProfile>): Promise<IProfile>;
 }
 
@@ -77,6 +78,9 @@ profileSchema.statics.createOrUpdateProfile = async function (
   }
 };
 
+profileSchema.statics.getProfile = async function (userId: string) {
+  return this.findOne({ userId });
+};
 const Profile = mongoose.model<IProfile, IProfileModel>(
   "Profile",
   profileSchema

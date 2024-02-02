@@ -14,4 +14,14 @@ router.put("/:id", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const profile = await ProfileService.getProfile(req.params.id);
+    res.json(profile);
+  } catch (err) {
+    console.error(err instanceof Error ? err.message : err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 export default router;

@@ -80,5 +80,8 @@ profileSchema.statics.createOrUpdateProfile = async function (profileData) {
         return this.create(profileData);
     }
 };
+profileSchema.statics.getProfile = async function (userId) {
+    return this.findOne({ userId });
+};
 const Profile = mongoose_1.default.model("Profile", profileSchema);
 exports.default = Profile;

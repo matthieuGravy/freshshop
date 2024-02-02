@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { logout } from "../store/actions/actionConnection";
 
 const Logout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const navigateToHomepage = () => navigate("/");
 
   const handleLogout = async () => {
     try {
@@ -16,6 +19,7 @@ const Logout = () => {
       }
       console.log("déconnecté");
       dispatch(logout());
+      navigateToHomepage();
     } catch (error) {
       console.error("Logout error:", error);
     }

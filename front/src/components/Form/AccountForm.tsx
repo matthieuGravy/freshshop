@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ButtonSubmit } from "../Buttons";
 
 interface AccountFormProps {
@@ -23,6 +23,27 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
     country: "",
     genre: "",
   });
+  const [fetchProfileId, setFetchProfileId] = useState<any>(null);
+
+  const userId = localStorage.getItem("userId"); // Récupérez l'ID de l'utilisateur du local storage
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const response = await fetch(`http://localhost:4700/profile/${userId}`);
+      const profile = await response.json();
+
+      setFirstname(profile.firstname);
+      setLastname(profile.lastname);
+      setStreet(profile.street);
+      setHouseNumber(profile.houseNumber);
+      setCity(profile.city);
+      setCountry(profile.country);
+      setGenre(profile.genre);
+    };
+
+    fetchProfile();
+  }, [userId]);
+
+  useEffect(() => {}, [fetchProfileId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -122,14 +143,19 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
       }
     }
   };
+  let textButton = "Confirm";
+  let sectionStyle =
+    "pt-14 rounded-xl px-8 m-auto max-w-xl bg-orange-300 grid grid-cols-2 lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 max-width";
 
+  let inputStyle =
+    "w-64 bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="w-full" onSubmit={handleSubmit}>
       {children}
-      <section className="w-full flex flex-col lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 ">
+      <section className={sectionStyle}>
         <label htmlFor="firstname">firstname</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="firstname"
           id="firstname"
           name="firstname"
@@ -140,7 +166,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         {errors.firstname && <p>{errors.firstname}</p>}
         <label htmlFor="lastname">lastname</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="lastname"
           id="lastname"
           name="lastname"
@@ -152,15 +178,16 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
 
         <label htmlFor="genre">Gender :</label>
         <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-          <option value="">Sélectionnez un genre</option>
+          <option value="">--Select a gender</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
+          <option value="other">Other</option>
         </select>
 
         {errors.street && <p>{errors.street}</p>}
         <label htmlFor="street">street</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="street"
           id="street"
           name="street"
@@ -173,7 +200,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
 
         <label htmlFor="houseNumber">houseNumber</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="houseNumber"
           id="houseNumber"
           name="houseNumber"
@@ -184,7 +211,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         {errors.city && <p>{errors.city}</p>}
         <label htmlFor="city">city</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="city"
           id="city"
           name="city"
@@ -196,7 +223,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         {errors.country && <p>{errors.country}</p>}
         <label htmlFor="country">country</label>
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="country"
           id="country"
           name="country"
@@ -226,7 +253,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
               {errors.city && <div>City: {errors.city}</div>}
             </div>
           )}
-          <ButtonSubmit text="Login" />
+          <ButtonSubmit text={textButton} />
         </div>
       </section>
     </form>

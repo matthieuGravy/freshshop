@@ -15,12 +15,11 @@ const WelcomeForm: React.FC<WelcomeFormProps> = ({
   childrenarticle,
 }) => {
   const user = useSelector((state: RootState) => state.user);
-
   return (
     <>
       {user ? (
         <article>
-          <p>Bonjour, {user.email}!</p>
+          <p>Bonjour, {user.email} !</p>
           {childrenarticle}
         </article>
       ) : (

@@ -16,11 +16,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     <>
-      <figure className=" w-44 flex text-center bg-green-100 relative rounded-xl overflow-hidden">
+      <figure className=" w-44 flex text-center bg-orange-100 relative rounded-xl overflow-hidden">
         <article className="flex flex-col ">
           {/*<img src={src} alt={title} />*/}
           <img src={kiwi} alt={title} className="px-12 pt-14 pb-8" />
-          <figcaption className="h-24 bg-stone-500">
+          <figcaption className="h-24 bg-orange-300">
             {title}
             <p>{price}€</p>
             <section className="px-4 absolute top-5 right-0 flex flex-col gap-y-2 rounded-xl">

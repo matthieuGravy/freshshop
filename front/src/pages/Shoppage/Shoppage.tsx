@@ -12,7 +12,7 @@ const Shoppage = () => {
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
   const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
   const titleCard = "kiwi";
-  const styleH3 = "text-green-200 font-medium";
+  const styleH3 = " font-medium";
 
   return (
     <>

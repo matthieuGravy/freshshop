@@ -19,8 +19,8 @@ const NavLinkComponent: React.FC<NavLinkProps> = ({ to, text }) => {
       <NavLink
         onClick={handleClick}
         to={to}
-        className={`px-2 hover:transition-all hover:text-green-500 ${
-          match ? "text-green-500" : ""
+        className={`px-2 hover:transition-all hover:text-orange-300 ${
+          match ? "text-orange-300" : ""
         } transition-all duration-300 ease-in-out text-transform: uppercase`}
       >
         {text}

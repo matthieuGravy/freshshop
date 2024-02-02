@@ -38,24 +38,7 @@ const FetchProfile: React.FC<FetchProfileProps> = ({ id, children }) => {
     return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, [id]);
 
-  return (
-    <>
-      <section>
-        {profile && (
-          <ul>
-            <li>genre : {profile.genre}</li>
-            <li>firstname : {profile.firstname}</li>
-            <li>lastname : {profile.lastname}</li>
-            <h3>Adresse</h3>
-            <li>street : {profile.street}</li>
-            <li>number : {profile.houseNumber}</li>
-            <li>city : {profile.city}</li>
-            <li>country : {profile.country}</li>
-          </ul>
-        )}
-      </section>
-    </>
-  );
+  return <>{profile && <span>{profile.firstname}</span>}</>;
 };
 
 export default FetchProfile;

@@ -6,7 +6,7 @@ import Login from "../../components/Login";
 import { NavlinkerButton } from "../../components/Buttons";
 import Heading from "../../components/JSXML/Heading";
 const Homepage = () => {
-  let styleSectionOne = "bg-green-50 xl:w-10/12 m-auto";
+  let styleSectionOne = "bg-orange-50 xl:w-10/12 m-auto";
   let styleSectiontwo = "bg-stone-500";
   const title =
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
@@ -15,7 +15,7 @@ const Homepage = () => {
     <>
       <section className={styleSectionOne}>
         <HeroHome titre={<Heading titre={title} className={styleTitle} />} />
-        <section className="bg-green-50 w-full px-8 pb-8">
+        <section className="w-full px-8 pb-8">
           <WelcomeForm
             children={
               <>

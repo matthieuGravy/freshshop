@@ -1,11 +1,25 @@
 import React, { useEffect, useState } from "react";
+import Heading from "../JSXML/Heading";
 
 interface FetchProfileProps {
   render: (profile: any) => React.ReactNode;
   id: string;
+  classNameUl: string;
+  classNameLi: string;
+  classNameSection: string;
+  classNameSousSection: string;
+  children?: React.ReactNode;
 }
 
-const FetchProfile: React.FC<FetchProfileProps> = ({ id, children }) => {
+const FetchProfile: React.FC<FetchProfileProps> = ({
+  id,
+  children,
+  classNameUl,
+  classNameLi,
+  classNameSection,
+  classNameSousSection,
+  classNameHeading,
+}) => {
   const [profile, setProfile] = useState<any>(null);
 
   const fetchProfileId = async () => {
@@ -40,18 +54,28 @@ const FetchProfile: React.FC<FetchProfileProps> = ({ id, children }) => {
 
   return (
     <>
-      <section>
+      <section className={classNameSection}>
+        {children}
         {profile && (
-          <ul>
-            <li>genre : {profile.genre}</li>
-            <li>firstname : {profile.firstname}</li>
-            <li>lastname : {profile.lastname}</li>
-            <h3>Adresse</h3>
-            <li>street : {profile.street}</li>
-            <li>number : {profile.houseNumber}</li>
-            <li>city : {profile.city}</li>
-            <li>country : {profile.country}</li>
-          </ul>
+          <>
+            <ul className={classNameUl}>
+              <li className={classNameLi}>genre : {profile.genre}</li>
+              <li className={classNameLi}>firstname : {profile.firstname}</li>
+              <li className={classNameLi}>lastname : {profile.lastname}</li>
+              <section className={classNameSousSection}>
+                <Heading
+                  level="h3"
+                  titre="Address"
+                  className={classNameHeading}
+                />
+                <li className={classNameLi}>street : {profile.street}</li>
+                <li className={classNameLi}>number : {profile.houseNumber}</li>
+                <li className={classNameLi}>city : {profile.city}</li>
+                <li className={classNameLi}>country : {profile.country}</li>
+              </section>
+            </ul>
+            <ul>ajouter la les objets ici qui sera la col 2</ul>
+          </>
         )}
       </section>
     </>

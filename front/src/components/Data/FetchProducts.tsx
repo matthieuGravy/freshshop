@@ -42,12 +42,13 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
 
     return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, []);
-  const styleH3 = "text-orange-500 font-medium text-xl";
+  const styleH3 = "text-orange-500 font-medium text-xl w-22";
   return (
     <>
       {products &&
         products.map((product: any) => (
           <ProductCard
+            key={product._id}
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }

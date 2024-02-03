@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <figcaption className=" relative h-24 bg-stone-500 text-stone-50 py-6">
             {title}
             <p>{price}€</p>
-            <section className="px-4 absolute top-5 right-0 flex flex-col gap-y-2 rounded-xl">
+            <section className="px-4 absolute top-5 right-0 flex flex-col gap-y-2">
               {button1} {button2}
             </section>
           </figcaption>

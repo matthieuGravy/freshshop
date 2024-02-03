@@ -144,10 +144,10 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
     }
   };
   let styleSelect =
-    "w-64 bg-orange-300  border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
+    "w-64 bg-stone-100  border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
   let textButton = "Confirm";
   let sectionStyle =
-    "pt-14 rounded-xl px-8 m-auto max-w-xl bg-orange-300 grid grid-cols-2 lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 max-width";
+    "pt-14 rounded-xl px-8 m-auto max-w-xl bg-stone-100 grid grid-cols-2 lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 max-width";
 
   let inputStyle =
     "w-64 bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";

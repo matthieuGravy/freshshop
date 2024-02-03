@@ -6,6 +6,7 @@ const Infopage = () => {
   console.log(userId);
   const styleHeading = "text-center text-3xl font-medium mt-4 mb-4";
   const classNameUl = "grid grid-cols-2 gap-4 bg-red-200 p-4";
+  const;
   return (
     <>
       <FetchProfile

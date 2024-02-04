@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Heading from "../JSXML/Heading";
 
+interface ProfileField {
+  name: string;
+  getValue: (profile: any) => any;
+}
+
 interface FetchProfileProps {
-  render: (profile: any) => React.ReactNode;
   id: string;
-  classNameUl: string;
+  fields: ProfileField[];
+  classNameUlName: string;
+  classNameUlValue: string;
   classNameLi: string;
   classNameSection: string;
-  classNameSousSection: string;
+  classNameSectionUl: string;
   children?: React.ReactNode;
 }
 
 const FetchProfile: React.FC<FetchProfileProps> = ({
   id,
+  fields,
   children,
-  classNameUl,
+  classNameUlName,
+  classNameUlValue,
   classNameLi,
+  classNameSectionUl,
   classNameSection,
-  classNameSousSection,
-  classNameHeading,
 }) => {
   const [profile, setProfile] = useState<any>(null);
 
@@ -53,32 +60,29 @@ const FetchProfile: React.FC<FetchProfileProps> = ({
   }, [id]);
 
   return (
-    <>
-      <section className={classNameSection}>
-        {children}
-        {profile && (
-          <>
-            <ul className={classNameUl}>
-              <li className={classNameLi}>genre : {profile.genre}</li>
-              <li className={classNameLi}>firstname : {profile.firstname}</li>
-              <li className={classNameLi}>lastname : {profile.lastname}</li>
-              <section className={classNameSousSection}>
-                <Heading
-                  level="h3"
-                  titre="Address"
-                  className={classNameHeading}
-                />
-                <li className={classNameLi}>street : {profile.street}</li>
-                <li className={classNameLi}>number : {profile.houseNumber}</li>
-                <li className={classNameLi}>city : {profile.city}</li>
-                <li className={classNameLi}>country : {profile.country}</li>
-              </section>
+    <section className={classNameSection}>
+      {children}
+      {profile && (
+        <>
+          <section className={classNameSectionUl}>
+            <ul className={classNameUlName}>
+              {fields.map((field) => (
+                <li key={field.name} className={classNameLi}>
+                  {field.name} :
+                </li>
+              ))}
             </ul>
-            <ul>ajouter la les objets ici qui sera la col 2</ul>
-          </>
-        )}
-      </section>
-    </>
+            <ul className={classNameUlValue}>
+              {fields.map((field) => (
+                <li key={field.name} className={classNameLi}>
+                  {field.getValue(profile)}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
+      )}
+    </section>
   );
 };
 

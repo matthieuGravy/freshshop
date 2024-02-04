@@ -143,19 +143,24 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
       }
     }
   };
+
   let styleSelect =
     "w-64 bg-stone-100  border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
   let textButton = "Confirm";
   let sectionStyle =
-    "pt-14 rounded-xl px-8 m-auto max-w-xl bg-stone-100 grid grid-cols-2 lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 max-width";
+    "pt-14 rounded-xl px-8 m-auto max-w-xl bg-stone-100 grid grid-cols-1 place-items-center gap-y-2 lg:gap-x-6 pb-6 max-width";
 
   let inputStyle =
-    "w-64 bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white";
+    "w-64 bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-500";
+  let labelStyle = "text-stone-500 text-lg font-bold pt-2 pb-2";
+
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       {children}
       <section className={sectionStyle}>
-        <label htmlFor="firstname">Firstname:</label>
+        <label className={labelStyle} htmlFor="firstname">
+          Firstname:
+        </label>
         <input
           className={inputStyle}
           placeholder="firstname"
@@ -166,7 +171,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
           onChange={handleChange}
         />
         {errors.firstname && <p>{errors.firstname}</p>}
-        <label htmlFor="lastname">Lastname:</label>
+        <label className={labelStyle} htmlFor="lastname">
+          Lastname:
+        </label>
         <input
           className={inputStyle}
           placeholder="lastname"
@@ -178,7 +185,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         />
         {errors.genre && <p>{errors.genre}</p>}
 
-        <label htmlFor="genre">Gender:</label>
+        <label className={labelStyle} htmlFor="genre">
+          Gender:
+        </label>
         <select
           value={genre}
           className={styleSelect}
@@ -191,7 +200,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         </select>
 
         {errors.street && <p>{errors.street}</p>}
-        <label htmlFor="street">Street:</label>
+        <label className={labelStyle} htmlFor="street">
+          Street:
+        </label>
         <input
           className={inputStyle}
           placeholder="street"
@@ -204,7 +215,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
 
         {errors.houseNumber && <p>{errors.houseNumber}</p>}
 
-        <label htmlFor="houseNumber">House number:</label>
+        <label className={labelStyle} htmlFor="houseNumber">
+          House number:
+        </label>
         <input
           className={inputStyle}
           placeholder="houseNumber"
@@ -215,7 +228,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
           onChange={handleChange}
         />
         {errors.city && <p>{errors.city}</p>}
-        <label htmlFor="city">City:</label>
+        <label className={labelStyle} htmlFor="city">
+          City:
+        </label>
         <input
           className={inputStyle}
           placeholder="city"
@@ -227,7 +242,9 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
         />
 
         {errors.country && <p>{errors.country}</p>}
-        <label htmlFor="country">Country:</label>
+        <label className={labelStyle} htmlFor="country">
+          Country:
+        </label>
         <input
           className={inputStyle}
           placeholder="country"
@@ -259,7 +276,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
               {errors.city && <div>City: {errors.city}</div>}
             </div>
           )}
-          <ButtonSubmit text={textButton} />
+          <ButtonSubmit text={textButton} className="bg-red-100" />
         </div>
       </section>
     </form>

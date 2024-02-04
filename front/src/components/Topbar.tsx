@@ -69,7 +69,7 @@ function Topbar() {
           <ul className="flex-1 flex justify-end pe-3">
             {/* My acount*/}
             <li className="px-2">
-              <NavLink to="/my-account/account">
+              <NavLink to="/my-account/info">
                 {/* account */}
                 <AccountIcon />
               </NavLink>

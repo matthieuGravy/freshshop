@@ -1,16 +1,17 @@
 import { useEffect } from "react";
-
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import Castpage from "./Castpage/Castpage";
-import Wishlistpage from "./Wishlistpage/Wishlistpage";
-
+import { RootState } from "../store/";
 import FetchFirstname from "../../components/Data/FetchFirstname";
 import Heading from "../../components/JSXML/Heading";
+import Notconnected from "../../components/Notconnected";
 
 const Profilepage = () => {
   const userId = localStorage.getItem("userId"); // Récupérez l'ID de l'utilisateur du local storage
   console.log(userId);
+  const user = useSelector((state: RootState) => state.user);
+
   let title = (
     <>
       Hi <FetchFirstname id={userId} />
@@ -19,10 +20,16 @@ const Profilepage = () => {
   let styleTitle = "text-3xl py-10 xl:ps-48 px-10";
 
   return (
-    <div>
-      <Heading level="h2" titre={title} className={styleTitle} />
-      <Outlet />
-    </div>
+    <>
+      {user ? (
+        <>
+          <Heading level="h2" titre={title} className={styleTitle} />
+          <Outlet />
+        </>
+      ) : (
+        <Notconnected />
+      )}
+    </>
   );
 };
 

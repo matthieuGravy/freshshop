@@ -40,31 +40,42 @@ const Signup: React.FC<SignupProps> = ({ children }) => {
     }
   };
 
+  const inputStyle =
+    "bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-slate-500 lg:w-64 m-auto";
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex-flex-col justify-center text-center bg-stone-100 rounded-xl px-8 m-auto max-w-xl pb-6 "
+    >
       {children}
-      <input
-        type="text"
-        name="username"
-        placeholder="Name"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <ButtonSubmit type="submit">Sign Up</ButtonSubmit>
+      <section className="flex flex-col justify-center gap-y-6 pb-6">
+        <input
+          className={inputStyle}
+          type="text"
+          name="username"
+          placeholder="Name"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className={inputStyle}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className={inputStyle}
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </section>
+      <ButtonSubmit type="submit" text="Sign Up"></ButtonSubmit>
     </form>
   );
 };

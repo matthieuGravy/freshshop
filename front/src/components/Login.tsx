@@ -65,15 +65,21 @@ const Login: React.FC<Loginprops> = ({ children }) => {
     }
   };
 
+  const inputStyle =
+    "bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-slate-500 lg:w-64 m-auto";
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex-flex-col justify-center text-center rounded-xl px-8 m-auto max-w-xl pb-6 "
+    >
       {children}
       <section className="w-full flex flex-col lg:flex-row justify-center gap-y-6 lg:gap-x-6 pb-6 ">
         {/*
         <label htmlFor="email">Email</label>
         */}
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="Email"
           id="email"
           name="email"
@@ -86,7 +92,7 @@ const Login: React.FC<Loginprops> = ({ children }) => {
          */}
 
         <input
-          className="bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-white"
+          className={inputStyle}
           placeholder="Password"
           id="password"
           name="password"
@@ -99,7 +105,9 @@ const Login: React.FC<Loginprops> = ({ children }) => {
         {(errors.email || errors.password) && (
           <p>Des erreurs sont présentes dans le formulaire</p>
         )}
-        <ButtonSubmit text="Login" />
+        <article className="m-auto">
+          <ButtonSubmit text="Login" />
+        </article>
       </section>
     </form>
   );

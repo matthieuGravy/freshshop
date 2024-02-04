@@ -151,8 +151,8 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
     "pt-14 rounded-xl px-8 m-auto max-w-xl bg-stone-100 grid grid-cols-1 place-items-center gap-y-2 lg:gap-x-6 pb-6 max-width";
 
   let inputStyle =
-    "w-64 bg-transparent backdrop-blur-sm border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-500";
-  let labelStyle = "text-stone-500 text-lg font-bold pt-2 pb-2";
+    "w-64 bg-transparent border-2 border-stone-500 rounded-full ps-5 p-2 placeholder:text-stone-500";
+  let labelStyle = "text-stone-500 text-lg font-bold pt-6";
 
   return (
     <form className="w-full" onSubmit={handleSubmit}>
@@ -255,7 +255,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
           onChange={handleChange}
         />
 
-        <div>
+        <article>
           {(errors.firstname ||
             errors.lastname ||
             errors.street ||
@@ -263,7 +263,7 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
             errors.country ||
             errors.genre ||
             errors.city) && (
-            <div>
+            <section>
               Des erreurs sont présentes dans le formulaire :
               {errors.firstname && <div>Firstname: {errors.firstname}</div>}
               {errors.lastname && <div>Lastname: {errors.lastname}</div>}
@@ -274,10 +274,10 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
               {errors.country && <div>Country: {errors.country}</div>}
               {errors.genre && <div>Genre: {errors.genre}</div>}
               {errors.city && <div>City: {errors.city}</div>}
-            </div>
+            </section>
           )}
           <ButtonSubmit text={textButton} className="bg-red-100" />
-        </div>
+        </article>
       </section>
     </form>
   );

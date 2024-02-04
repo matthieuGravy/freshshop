@@ -41,7 +41,7 @@ const Infopage = () => {
             Update My Information
           </ButtonAction>
 
-          <section className="pt-12">
+          <section className="pt-12 pb-8">
             {isFormVisible && (
               <AccountForm
                 id={userId}

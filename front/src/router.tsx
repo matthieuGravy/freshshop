@@ -11,7 +11,6 @@ import Profilepage from "./pages/Profilepage/Profilepage";
 import Loginpage from "./pages/Loginpage/Loginpage";
 import Castpage from "./pages/Profilepage/Castpage/Castpage";
 import Wishlistpage from "./pages/Profilepage/Wishlistpage/Wishlistpage";
-import Accountpage from "./pages/Profilepage/Accountpage/Accountpage";
 import Infopage from "./pages/Profilepage/Infopage/Infopage";
 
 export const router = createBrowserRouter([
@@ -29,7 +28,6 @@ export const router = createBrowserRouter([
         path: "/my-account",
         element: <Profilepage />,
         children: [
-          { path: "account", element: <Accountpage /> },
           { path: "cast", element: <Castpage /> },
           { path: "wishlist", element: <Wishlistpage /> },
           { path: "info", element: <Infopage /> },

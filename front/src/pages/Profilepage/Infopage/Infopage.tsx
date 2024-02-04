@@ -3,6 +3,7 @@ import Heading from "../../../components/JSXML/Heading";
 import { ButtonAction } from "../../../components/Buttons";
 import AccountForm from "../../../components/Form/AccountForm";
 import { useState } from "react";
+import CroixIcon from "../../../components/Icons/CroixIcon";
 
 const Infopage = () => {
   const userId = localStorage.getItem("userId"); // Récupérez l'ID de l'utilisateur du local storage
@@ -46,11 +47,26 @@ const Infopage = () => {
               <AccountForm
                 id={userId}
                 children={
-                  <Heading
-                    level="h2"
-                    titre="Complete the form to update your information"
-                    className="text-center text-3xl font-medium mt-4 mb-6 w-8/12 m-auto"
-                  />
+                  <>
+                    <Heading
+                      level="h2"
+                      titre="Complete the form to update your information"
+                      className="text-center text-3xl font-medium mt-4 mb-6 w-8/12 m-auto relative"
+                    />
+                  </>
+                }
+                children2={
+                  <section className="py-12">
+                    <p className="pb-6 text-stone-400">
+                      want you complete your information later?{" "}
+                    </p>
+                    <button
+                      className="bg-stone-50 px-4 border-2 border-stone-400 rounded-full text-stone-400 hover:border-orange-400 transition duration-300 ease-in-out"
+                      onClick={toggleForm}
+                    >
+                      later
+                    </button>
+                  </section>
                 }
               />
             )}

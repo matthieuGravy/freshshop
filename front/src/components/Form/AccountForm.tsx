@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
-import { ButtonSubmit } from "../Buttons";
+import { ButtonSubmit, ButtonAction } from "../Buttons";
 
 interface AccountFormProps {
   children?: React.ReactNode;
+  children2?: React.ReactNode;
   id: string;
 }
 
-const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
+const AccountForm: React.FC<AccountFormProps> = ({
+  children,
+  children2,
+  id,
+  button,
+}) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [street, setStreet] = useState("");
@@ -155,131 +161,134 @@ const AccountForm: React.FC<AccountFormProps> = ({ children, id }) => {
   let labelStyle = "text-stone-500 text-lg font-bold pt-6";
 
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
-      {children}
-      <section className={sectionStyle}>
-        <label className={labelStyle} htmlFor="firstname">
-          Firstname:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="firstname"
-          id="firstname"
-          name="firstname"
-          type="text"
-          value={firstname}
-          onChange={handleChange}
-        />
-        {errors.firstname && <p>{errors.firstname}</p>}
-        <label className={labelStyle} htmlFor="lastname">
-          Lastname:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="lastname"
-          id="lastname"
-          name="lastname"
-          type="text"
-          value={lastname}
-          onChange={handleChange}
-        />
-        {errors.genre && <p>{errors.genre}</p>}
+    <>
+      <form className="w-full" onSubmit={handleSubmit}>
+        {children}
+        <section className={sectionStyle}>
+          <label className={labelStyle} htmlFor="firstname">
+            Firstname:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="firstname"
+            id="firstname"
+            name="firstname"
+            type="text"
+            value={firstname}
+            onChange={handleChange}
+          />
+          {errors.firstname && <p>{errors.firstname}</p>}
+          <label className={labelStyle} htmlFor="lastname">
+            Lastname:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="lastname"
+            id="lastname"
+            name="lastname"
+            type="text"
+            value={lastname}
+            onChange={handleChange}
+          />
+          {errors.genre && <p>{errors.genre}</p>}
 
-        <label className={labelStyle} htmlFor="genre">
-          Gender:
-        </label>
-        <select
-          value={genre}
-          className={styleSelect}
-          onChange={(e) => setGenre(e.target.value)}
-        >
-          <option value="">--Select a gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
+          <label className={labelStyle} htmlFor="genre">
+            Gender:
+          </label>
+          <select
+            value={genre}
+            className={styleSelect}
+            onChange={(e) => setGenre(e.target.value)}
+          >
+            <option value="">--Select a gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
 
-        {errors.street && <p>{errors.street}</p>}
-        <label className={labelStyle} htmlFor="street">
-          Street:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="street"
-          id="street"
-          name="street"
-          type="text"
-          value={street}
-          onChange={handleChange}
-        />
+          {errors.street && <p>{errors.street}</p>}
+          <label className={labelStyle} htmlFor="street">
+            Street:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="street"
+            id="street"
+            name="street"
+            type="text"
+            value={street}
+            onChange={handleChange}
+          />
 
-        {errors.houseNumber && <p>{errors.houseNumber}</p>}
+          {errors.houseNumber && <p>{errors.houseNumber}</p>}
 
-        <label className={labelStyle} htmlFor="houseNumber">
-          House number:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="houseNumber"
-          id="houseNumber"
-          name="houseNumber"
-          type="number"
-          value={houseNumber}
-          onChange={handleChange}
-        />
-        {errors.city && <p>{errors.city}</p>}
-        <label className={labelStyle} htmlFor="city">
-          City:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="city"
-          id="city"
-          name="city"
-          type="text"
-          value={city}
-          onChange={handleChange}
-        />
+          <label className={labelStyle} htmlFor="houseNumber">
+            House number:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="houseNumber"
+            id="houseNumber"
+            name="houseNumber"
+            type="number"
+            value={houseNumber}
+            onChange={handleChange}
+          />
+          {errors.city && <p>{errors.city}</p>}
+          <label className={labelStyle} htmlFor="city">
+            City:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="city"
+            id="city"
+            name="city"
+            type="text"
+            value={city}
+            onChange={handleChange}
+          />
 
-        {errors.country && <p>{errors.country}</p>}
-        <label className={labelStyle} htmlFor="country">
-          Country:
-        </label>
-        <input
-          className={inputStyle}
-          placeholder="country"
-          id="country"
-          name="country"
-          type="text"
-          value={country}
-          onChange={handleChange}
-        />
+          {errors.country && <p>{errors.country}</p>}
+          <label className={labelStyle} htmlFor="country">
+            Country:
+          </label>
+          <input
+            className={inputStyle}
+            placeholder="country"
+            id="country"
+            name="country"
+            type="text"
+            value={country}
+            onChange={handleChange}
+          />
 
-        <article>
-          {(errors.firstname ||
-            errors.lastname ||
-            errors.street ||
-            errors.houseNumber ||
-            errors.country ||
-            errors.genre ||
-            errors.city) && (
-            <section>
-              Des erreurs sont présentes dans le formulaire :
-              {errors.firstname && <div>Firstname: {errors.firstname}</div>}
-              {errors.lastname && <div>Lastname: {errors.lastname}</div>}
-              {errors.street && <div>Street: {errors.street}</div>}
-              {errors.houseNumber && (
-                <div>House Number: {errors.houseNumber}</div>
-              )}
-              {errors.country && <div>Country: {errors.country}</div>}
-              {errors.genre && <div>Genre: {errors.genre}</div>}
-              {errors.city && <div>City: {errors.city}</div>}
-            </section>
-          )}
-          <ButtonSubmit text={textButton} className="bg-red-100" />
-        </article>
-      </section>
-    </form>
+          <article className="pb-6">
+            {(errors.firstname ||
+              errors.lastname ||
+              errors.street ||
+              errors.houseNumber ||
+              errors.country ||
+              errors.genre ||
+              errors.city) && (
+              <section>
+                Des erreurs sont présentes dans le formulaire :
+                {errors.firstname && <div>Firstname: {errors.firstname}</div>}
+                {errors.lastname && <div>Lastname: {errors.lastname}</div>}
+                {errors.street && <div>Street: {errors.street}</div>}
+                {errors.houseNumber && (
+                  <div>House Number: {errors.houseNumber}</div>
+                )}
+                {errors.country && <div>Country: {errors.country}</div>}
+                {errors.genre && <div>Genre: {errors.genre}</div>}
+                {errors.city && <div>City: {errors.city}</div>}
+              </section>
+            )}
+          </article>
+          <ButtonSubmit text={textButton} />
+        </section>
+      </form>
+      {children2}
+    </>
   );
 };
 

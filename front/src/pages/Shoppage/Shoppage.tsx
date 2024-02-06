@@ -21,8 +21,8 @@ const Shoppage = () => {
         <Heading level="h1" titre={title} />
         <article></article>
       </section>
-      <section className="grid grid-cols-1 sm:grid-cols-4 grid-rows-auto bg-red-200 sm:bg-stone-50 pt-12">
-        <header className="sm:col-span-4 grid sm:grid-cols-4 place-items-end bg-red-400">
+      <section className="grid grid-cols-1 sm:grid-cols-4 grid-rows-auto sm:bg-stone-50 pt-12">
+        <header className="sm:col-span-4 grid sm:grid-cols-4 place-items-end ">
           <section className="sm:col-span-3">
             <button className="px-4">
               <FilterIcon />
@@ -32,7 +32,7 @@ const Shoppage = () => {
             </button>
           </section>
         </header>
-        <section className="bg-orange-800 col-span-3  py-6 px-6 ">
+        <section className="col-span-3  py-6 px-6 ">
           <section className="grid auto-rows-max grid-cols-1 sm:grid-cols-2 xl:grid-cols-3  place-items-center gap-y-16 bg-stone-100 py-12 px-8 rounded-lg">
             <FetchProducts />
           </section>

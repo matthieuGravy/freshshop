@@ -350,6 +350,36 @@ class ProductService {
       return []; // Retourne un tableau vide en cas d'erreur
     }
   }
+  async getProductByName(name: string): Promise<IProductDocument | null> {
+    try {
+      const product = await Product.findOne({ name: name });
+      if (!product) {
+        console.log("Le produit n'existe pas dans la base de données.");
+        return null;
+      }
+      console.log("Produit récupéré avec succès de la base de données.");
+      return product;
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération du produit de la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+
+  async sortProductsByCategory(category: string): Promise<IProductDocument[]> {
+    try {
+      const products = await Product.find({ category: category })
+        .sort({ category: 1 })
+        .exec();
+      console.log("Produits triés avec succès par catégorie.");
+      return products;
+    } catch (error) {
+      console.error("Erreur lors du tri des produits par catégorie :", error);
+      return [];
+    }
+  }
 }
 
 const productService = new ProductService();

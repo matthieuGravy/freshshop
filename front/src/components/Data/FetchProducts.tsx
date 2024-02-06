@@ -42,7 +42,7 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
 
     return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, []);
-  const styleH3 = "text-orange-500 font-medium text-xl w-22";
+  const styleH3 = "text-orange-500 ";
   return (
     <>
       {products &&

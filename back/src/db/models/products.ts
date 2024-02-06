@@ -135,16 +135,6 @@ const productList: IProductDocument[] = [
   new Product({
     _id: new Types.ObjectId(),
     __v: 0,
-    name: "Bundle Legume",
-    price: 8.99,
-    stock: 15,
-    image: "../assets/products/bundle-legume.svg",
-    category: "légumes",
-    available: true,
-  }),
-  new Product({
-    _id: new Types.ObjectId(),
-    __v: 0,
     name: "Carotte",
     price: 1.29,
     stock: 40,

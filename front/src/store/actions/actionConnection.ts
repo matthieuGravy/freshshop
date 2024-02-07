@@ -28,7 +28,7 @@ export const logout = (): UserActionTypes => ({
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 
 export const signupSuccess = (user) => {
-  if (!user.id) {
+  if (!user._id) {
     throw new Error("User ID is missing in the payload");
   }
   return {

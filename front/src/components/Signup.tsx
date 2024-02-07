@@ -27,10 +27,15 @@ const Signup: React.FC<SignupProps> = ({ children }) => {
         body: JSON.stringify({ username, email, password }),
       });
 
-      const user = await response.json();
+      const data = await response.json();
+      const user = {
+        ...data,
+        _id: data._id, // Assurez-vous que l'ID de l'utilisateur est inclus dans l'objet `user`
+      };
       console.log(user);
 
       console.log("Inscrit");
+
       dispatch(signupSuccess(user));
     } catch (error) {
       console.error("Signup error:", error);

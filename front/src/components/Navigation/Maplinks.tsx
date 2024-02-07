@@ -9,10 +9,8 @@ interface Link {
 
 const links: Link[] = [
   { id: 0, to: "/", text: "home" },
-  { id: 1, to: "about", text: "about us" },
-  { id: 2, to: "shop", text: "shop" },
-  { id: 3, to: "gallery", text: "gallery" },
-  { id: 4, to: "contact", text: "contact us" },
+  { id: 1, to: "shop", text: "shop" },
+  { id: 2, to: "about", text: "about us" },
 ];
 
 const Maplinks: React.FC = () => {

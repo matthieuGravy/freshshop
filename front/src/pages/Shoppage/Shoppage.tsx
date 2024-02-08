@@ -8,15 +8,15 @@ import WishIcon from "../../components/Icons/WishIcon";
 import FilterIcon from "../../components/Icons/FilterIcon";
 import SearchIcon from "../../components/Icons/SearchIcon";
 
+import FilterMenu from "../../components/Navigation/FilterMenu";
+import Filter from "../../components/Navigation/Filter";
 import FetchProducts from "../../components/Data/FetchProducts";
 import FetchProductByCategory from "../../components/Data/FetchProductByCategory";
 const Shoppage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedCategory(event.target.value);
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
   };
   const title =
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
@@ -57,19 +57,36 @@ const Shoppage = () => {
         <section className="row-start-2 sm:row-auto py-6 px-6">
           <nav className=" bg-stone-100 py-12 rounded-lg sm:sticky xl:top-24 top-6 sm:right-0">
             <ul>
-              <li>
-                <label htmlFor="Category">Category</label>
-                <select
-                  name="Category"
-                  id="Category"
-                  onChange={handleCategoryChange}
-                >
-                  <option value="">None</option>
-                  <option value="fruits">Fruits</option>
-                  <option value="légumes">Légumes</option>
-                </select>
-              </li>
               <li>stock only</li>
+              <li>
+                <FilterMenu
+                  buttonTitle="Category"
+                  styleButton="flex items-center justify-between w-full px-4 pb-2 text-left "
+                  children={
+                    <>
+                      {
+                        <>
+                          <section className="flex flex-col items-start px-4 pb-2">
+                            <button onClick={() => handleCategoryChange("")}>
+                              None
+                            </button>
+                            <button
+                              onClick={() => handleCategoryChange("fruits")}
+                            >
+                              Fruits
+                            </button>
+                            <button
+                              onClick={() => handleCategoryChange("légumes")}
+                            >
+                              Légumes
+                            </button>
+                          </section>
+                        </>
+                      }
+                    </>
+                  }
+                />
+              </li>
             </ul>
           </nav>
         </section>

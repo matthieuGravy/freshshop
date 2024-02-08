@@ -88,7 +88,7 @@ function Topbar() {
             isNavVisible ? "sticky" : "hidden"
           }`}
         >
-          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center min-h-[100vh] flex-col lg:flex-row gap-y-5 lg:min-h-0 lg:h-14 -top-4 left-0 sticky bg-orange-50 w-full md:w-1/2  lg:bg-transparent relative bg-red-200 ">
+          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center min-h-[100vh] flex-col lg:flex-row gap-y-5 lg:min-h-0 lg:h-14 -top-4 left-0 sticky bg-orange-500 w-full md:w-1/2  lg:bg-transparent relative ">
             <button
               onClick={toggleNav}
               className="lg:hidden xl:hidden absolute right-5 top-5"
@@ -105,7 +105,7 @@ function Topbar() {
           </ul>
         </section>
         <section
-          className={`text-right flex-2 z-50 ${
+          className={`text-right flex-2 z-50 py-2 ${
             isNavVisible ? "hidden" : "flex"
           }`}
         >

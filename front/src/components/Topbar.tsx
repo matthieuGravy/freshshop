@@ -69,18 +69,22 @@ function Topbar() {
       transition={{ duration: 0.3 }}
       className="fixed top-0 w-full z-40"
     >
-      <section className="flex justify-between bg-orange-500 items-center">
+      <section
+        className={`flex justify-between bg-orange-500 items-center ${
+          isNavVisible ? "bg-transparent " : "bg-orange-500"
+        }`}
+      >
         <button
           onClick={toggleNav}
           className={`lg:hidden xl:hidden flex-initial w-10 grid place-items-center ${
-            isNavVisible ? "hidden" : "grid"
+            isNavVisible ? "hidden " : "grid"
           }`}
         >
           {/* hamburger */}
           <HamburgerIcon />
         </button>
         <section
-          className={`z-50 lg:z-0 flex-3 lg:flex w-full lg:h-auto backdrop-blur lg:backdrop-blur-none bottom-0 left-0 lg:place-items-center bg-purple-200 ${
+          className={`z-50 lg:z-0 flex-3 lg:flex w-full lg:h-auto backdrop-blur lg:backdrop-blur-none bottom-0 left-0 lg:place-items-center ${
             isNavVisible ? "sticky" : "hidden"
           }`}
         >

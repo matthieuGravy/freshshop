@@ -49,6 +49,16 @@ function Topbar() {
     }
   }, [scrollYProgress]);
 
+  useEffect(() => {
+    if (isNavVisible) {
+      // Bloquer le défilement
+      document.body.style.overflow = "hidden";
+    } else {
+      // Autoriser le défilement
+      document.body.style.overflow = "auto";
+    }
+  }, [isNavVisible]);
+
   return (
     <motion.header
       variants={{ isVisible: { y: 0 }, isHidden: { y: -65 } }}

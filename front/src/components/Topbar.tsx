@@ -62,17 +62,19 @@ function Topbar() {
       <section className="flex justify-between bg-orange-500 items-center">
         <button
           onClick={toggleNav}
-          className="lg:hidden xl:hidden flex-initial w-10 grid place-items-center "
+          className={`lg:hidden xl:hidden flex-initial w-10 grid place-items-center ${
+            isNavVisible ? "hidden" : "grid"
+          }`}
         >
           {/* hamburger */}
           <HamburgerIcon />
         </button>
         <section
-          className={`z-50 lg:z-0 flex-3 lg:flex h-full w-full lg:h-auto backdrop-blur lg:backdrop-blur-none left-0 lg:place-items-center  ${
-            isNavVisible ? "fixed" : "hidden"
+          className={`z-50 lg:z-0 flex-3 lg:flex w-full lg:h-auto backdrop-blur lg:backdrop-blur-none bottom-0 left-0 lg:place-items-center bg-purple-200 ${
+            isNavVisible ? "sticky" : "hidden"
           }`}
         >
-          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center min-h-[110vh] flex-col lg:flex-row gap-y-5 lg:min-h-0 lg:h-14 -top-4 left-0 sticky bg-orange-50 w-full md:w-1/2  lg:bg-transparent relative ">
+          <ul className="transition-all duration-300 lg:min-w-full lg:flex-1 flex justify-center text-center min-h-[100vh] flex-col lg:flex-row gap-y-5 lg:min-h-0 lg:h-14 -top-4 left-0 sticky bg-orange-50 w-full md:w-1/2  lg:bg-transparent relative bg-red-200 ">
             <button
               onClick={toggleNav}
               className="lg:hidden xl:hidden absolute right-5 top-5"
@@ -88,9 +90,13 @@ function Topbar() {
             <Maplinks />
           </ul>
         </section>
-        <section className="text-right flex-2 z-50 ">
+        <section
+          className={`text-right flex-2 z-50 ${
+            isNavVisible ? "hidden" : "flex"
+          }`}
+        >
           {user ? (
-            <ul className="flex-1 flex justify-end pe-3 self-center">
+            <ul className="flex-1 flex justify-end pe-3 self-center ">
               {/* My acount*/}
               <li className="px-2">
                 <NavLink to="/my-account/info" onClick={closeNav}>

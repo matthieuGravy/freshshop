@@ -29,9 +29,9 @@ const Shoppage = () => {
         <Heading level="h1" titre={title} />
         <article></article>
       </section>
-      <section className="grid grid-cols-1 sm:grid-cols-4 grid-rows-auto sm:bg-stone-50 pt-12">
-        <header className="sm:col-span-4 grid sm:grid-cols-4 place-items-end ">
-          <section className="sm:col-span-3">
+      <section className="grid grid-cols-1 xl:grid-cols-4 grid-rows-auto sm:bg-stone-50 pt-12">
+        <header className="xl:col-span-4 grid xl:grid-cols-4 place-items-end ">
+          <section className="xl:col-span-3">
             <button className="px-4">
               <FilterIcon />
             </button>
@@ -41,7 +41,7 @@ const Shoppage = () => {
           </section>
         </header>
         <section className="col-span-3  py-6 sm:px-6 ">
-          <section className="grid auto-rows-max grid-cols-2 sm:grid-cols-2 xl:grid-cols-4  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
+          <section className="grid auto-rows-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
             {/*
             <FetchProducts />
             */}
@@ -54,8 +54,8 @@ const Shoppage = () => {
             )}
           </section>
         </section>
-        <section className="row-start-2 sm:row-auto py-6 px-6">
-          <nav className=" bg-stone-100 py-12 rounded-lg sm:sticky xl:top-24 top-6 sm:right-0">
+        <section className="row-start-2 xl:row-auto py-6 px-6">
+          <nav className=" bg-stone-100 xl-12 rounded-lg xl:sticky xl:top-24 top-6 sm:right-0">
             <ul>
               <li>stock only</li>
               <li>

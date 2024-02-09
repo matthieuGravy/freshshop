@@ -40,8 +40,8 @@ const Shoppage = () => {
             </button>
           </section>
         </header>
-        <section className="col-span-3  py-6 px-6 ">
-          <section className="grid auto-rows-max grid-cols-1 sm:grid-cols-2 xl:grid-cols-4  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
+        <section className="col-span-3  py-6 sm:px-6 ">
+          <section className="grid auto-rows-max grid-cols-2 sm:grid-cols-2 xl:grid-cols-4  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
             {/*
             <FetchProducts />
             */}

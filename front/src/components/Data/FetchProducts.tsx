@@ -4,6 +4,7 @@ import Heading from "../JSXML/Heading";
 import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface FetchProductsProps {
   render: (products: any) => React.ReactNode;
@@ -56,7 +57,13 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }
-            image={product.image}
+            image={
+              <LazyLoadImage
+                src={product.image}
+                alt={product.name}
+                title={product.title}
+              />
+            }
             price={product.price}
             button1={<ButtonBuy text={<CaddieIcon />} />}
             button2={<ButtonBuy text={<WishIcon />} />}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 import { ProductCard } from "../cards";
 import Heading from "../JSXML/Heading";
 import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
-
 interface fetchProductByCategoryProps {
   category: string;
   render: (products: any) => React.ReactNode;
@@ -63,7 +64,14 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }
-            image={product.image}
+            image={
+              <LazyLoadImage
+                src={product.image}
+                alt={product.name}
+                title={product.title}
+              />
+            }
+            alt={product.name}
             price={product.price}
             button1={<ButtonBuy text={<CaddieIcon />} />}
             button2={<ButtonBuy text={<WishIcon />} />}

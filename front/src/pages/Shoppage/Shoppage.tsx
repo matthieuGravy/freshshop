@@ -1,6 +1,3 @@
-import { ProductCard } from "../../components/Cards";
-import { ButtonBuy } from "../../components/Buttons";
-import Heading from "../../components/JSXML/Heading";
 import React, { useState } from "react";
 
 import CaddieIcon from "../../components/Icons/CaddieIcon";
@@ -8,10 +5,15 @@ import WishIcon from "../../components/Icons/WishIcon";
 import FilterIcon from "../../components/Icons/FilterIcon";
 import SearchIcon from "../../components/Icons/SearchIcon";
 
+import { ProductCard } from "../../components/Cards";
+import { ButtonBuy } from "../../components/Buttons";
+import Heading from "../../components/JSXML/Heading";
 import FilterMenu from "../../components/Navigation/FilterMenu";
 import Filter from "../../components/Navigation/Filter";
 import FetchProducts from "../../components/Data/FetchProducts";
 import FetchProductByCategory from "../../components/Data/FetchProductByCategory";
+import SearchProduct from "../../components/Data/SearchProduct";
+
 const Shoppage = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -21,7 +23,6 @@ const Shoppage = () => {
   const title =
     "Embark on a Fresh Journey: Cultivate Well-being with Our Premium Selection of Fruits and Vegetables!";
   const styleTitle = "text-7xl py-10 xl:ps-48 px-10";
-  const titleCard = "kiwi";
 
   return (
     <>
@@ -59,6 +60,9 @@ const Shoppage = () => {
             <ul>
               <li>stock only</li>
               <li>
+                <SearchProduct />
+              </li>
+              <li>
                 <FilterMenu
                   buttonTitle="Category"
                   styleButton="flex items-center justify-between w-full px-4 pb-2 text-left "
@@ -67,18 +71,31 @@ const Shoppage = () => {
                       {
                         <>
                           <section className="flex flex-col items-start px-4 pb-2">
-                            <button onClick={() => handleCategoryChange("")}>
+                            <button
+                              className={
+                                selectedCategory === "" ? "font-bold" : ""
+                              }
+                              onClick={() => handleCategoryChange("")}
+                            >
                               None
                             </button>
                             <button
+                              className={
+                                selectedCategory === "fruits" ? "font-bold" : ""
+                              }
                               onClick={() => handleCategoryChange("fruits")}
                             >
                               Fruits
                             </button>
                             <button
+                              className={
+                                selectedCategory === "légumes"
+                                  ? "font-bold"
+                                  : ""
+                              }
                               onClick={() => handleCategoryChange("légumes")}
                             >
-                              Légumes
+                              Vegetables
                             </button>
                           </section>
                         </>

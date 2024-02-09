@@ -11,8 +11,10 @@ interface FetchProductsProps {
 
 const FetchProducts: React.FC<FetchProductsProps> = () => {
   const [products, setProducts] = useState<any>(null);
+  const [IsLoading, setIsLoading] = useState(true);
 
   const fetchProducts = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("http://localhost:4700/products", {
         method: "GET",
@@ -22,9 +24,10 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
         },
       });
       if (response.ok) {
-        const products = await response.json();
-        setProducts(products);
-        console.log("products", products);
+        const newProducts = await response.json();
+        if (JSON.stringify(newProducts) !== JSON.stringify(products)) {
+          setProducts(newProducts);
+        }
       } else {
         console.error(`Error: ${response.status}`);
       }
@@ -33,19 +36,20 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
       if (error.response) {
         console.error("Server Error:", error.response.data);
       }
+    } finally {
+      setIsLoading(false); // Appeler setIsLoading(false) dans un bloc finally pour s'assurer qu'il est toujours appelé
     }
   };
-
   useEffect(() => {
     fetchProducts();
-    const intervalId = setInterval(fetchProducts, 5000); // Polling toutes les 5 secondes
-
-    return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, []);
   const styleH3 = "text-orange-500 ";
   return (
     <>
-      {products &&
+      {IsLoading ? (
+        <div>Loading...</div>
+      ) : (
+        products &&
         products.map((product: any) => (
           <ProductCard
             key={product._id}
@@ -57,7 +61,8 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
             button1={<ButtonBuy text={<CaddieIcon />} />}
             button2={<ButtonBuy text={<WishIcon />} />}
           />
-        ))}
+        ))
+      )}
     </>
   );
 };

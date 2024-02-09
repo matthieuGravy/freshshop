@@ -14,8 +14,10 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   category,
 }) => {
   const [products, setProducts] = useState<any>(null);
+  const [IsLoading, setIsLoading] = useState(true);
 
   const fetchProductByCategory = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `http://localhost:4700/products/cat/${category}`,
@@ -28,9 +30,10 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
         }
       );
       if (response.ok) {
-        const products = await response.json();
-        setProducts(products);
-        console.log("products", products);
+        const newProducts = await response.json();
+        if (JSON.stringify(newProducts) !== JSON.stringify(products)) {
+          setProducts(newProducts);
+        }
       } else {
         console.error(`Error: ${response.status}`);
       }
@@ -39,19 +42,21 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
       if (error.response) {
         console.error("Server Error:", error.response.data);
       }
+    } finally {
+      setIsLoading(false); // Appeler setIsLoading(false) dans un bloc finally pour s'assurer qu'il est toujours appelé
     }
   };
 
   useEffect(() => {
     fetchProductByCategory();
-    const intervalId = setInterval(fetchProductByCategory, 5000); // Polling toutes les 5 secondes
-
-    return () => clearInterval(intervalId); // Nettoyer sur le démontage
   }, [category]);
   const styleH3 = "text-orange-500 ";
   return (
     <>
-      {products &&
+      {IsLoading ? (
+        <div>Loading...</div>
+      ) : (
+        products &&
         products.map((product: any) => (
           <ProductCard
             key={product._id}
@@ -63,7 +68,8 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
             button1={<ButtonBuy text={<CaddieIcon />} />}
             button2={<ButtonBuy text={<WishIcon />} />}
           />
-        ))}
+        ))
+      )}
     </>
   );
 };

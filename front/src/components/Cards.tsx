@@ -19,6 +19,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <figure className="flex text-center bg-stone-50 relative rounded-xl overflow-hidden ">
         <article className="flex flex-col ">
           <img src={image} alt={title} className="px-12 pt-14 pb-8" />
+
           <figcaption className=" relative h-24 bg-stone-100 text-stone-500 py-6 text-left grid grid-cols-2 grid-rows-2 gap-y-4">
             {title}
             <p className="col-start-1 col-row-2">{price}€</p>

@@ -350,18 +350,20 @@ class ProductService {
       return []; // Retourne un tableau vide en cas d'erreur
     }
   }
-  async getProductByName(name: string): Promise<IProductDocument | null> {
+  async getProductsByName(name: string): Promise<IProductDocument[] | null> {
     try {
-      const product = await Product.findOne({ name: name });
-      if (!product) {
-        console.log("Le produit n'existe pas dans la base de données.");
+      const products = await Product.find({ name: new RegExp(name, "i") });
+      if (!products || products.length === 0) {
+        console.log(
+          "Aucun produit correspondant trouvé dans la base de données."
+        );
         return null;
       }
-      console.log("Produit récupéré avec succès de la base de données.");
-      return product;
+      console.log("Produits récupérés avec succès de la base de données.");
+      return products;
     } catch (error) {
       console.error(
-        "Erreur lors de la récupération du produit de la base de données :",
+        "Erreur lors de la récupération des produits de la base de données :",
         error
       );
       return null;

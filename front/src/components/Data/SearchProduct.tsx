@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+import SearchIcon from "../Icons/SearchIcon";
 
 function SearchProduct() {
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   const searchProducts = async () => {
     try {
@@ -22,12 +28,31 @@ function SearchProduct() {
 
   return (
     <>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={searchProducts}>Rechercher</button>
+      {isOpen ? (
+        <>
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button onClick={searchProducts}>
+            {" "}
+            <SearchIcon />
+          </button>
+        </>
+      ) : (
+        ""
+      )}
+      {isOpen ? (
+        ""
+      ) : (
+        <>
+          <button onClick={handleOpen}>
+            <SearchIcon />
+          </button>
+        </>
+      )}
+
       {products.map((product) => (
         <div key={product._id}>
           <h2>{product.name}</h2>

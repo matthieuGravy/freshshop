@@ -65,7 +65,7 @@ const Shoppage = () => {
               <li>
                 <FilterMenu
                   buttonTitle="Category"
-                  styleButton="flex items-center justify-between w-full px-4 pb-2 text-left "
+                  styleButton="flex items-center justify-between w-64 px-4 pb-2 text-left "
                   children={
                     <>
                       {
@@ -77,7 +77,7 @@ const Shoppage = () => {
                               }
                               onClick={() => handleCategoryChange("")}
                             >
-                              None
+                              All
                             </button>
                             <button
                               className={

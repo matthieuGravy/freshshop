@@ -7,6 +7,7 @@ interface ProductCardProps {
   button1?: ReactNode;
   button2?: ReactNode;
   image: React.ReactNode;
+  func?: (product: any) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
@@ -15,6 +16,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   button1,
   button2,
   image,
+  func,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -28,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <figure
-        className="flex text-center relative rounded-xl overflow-hidden hover:bg-orange-500"
+        className="flex text-center relative rounded-xl overflow-hidden hover:bg-stone-50"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -38,20 +40,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
               ? "flex flex-col flex-1 "
               : "bg-stone-50 flex flex-col flex-1 "
           }
+          onClick={func}
         >
           {image}
 
           <figcaption
             className={
               isHovered
-                ? "flex-auto relative h-24 text-stone-200 py-6 text-left grid grid-cols-3 grid-auto px-2"
+                ? "flex-auto relative h-24 text-stone-600 py-6 text-left grid grid-cols-3 grid-auto px-2"
                 : "flex-auto relative h-24 text-stone-500 py-6 text-left grid grid-cols-3 grid-auto bg-stone-100"
             }
           >
             <article
               className={
                 isHovered
-                  ? "col-span-2 text-stone-50"
+                  ? "col-span-2 text-orange-500 font-medium	"
                   : "col-span-2 text-orange-500"
               }
             >

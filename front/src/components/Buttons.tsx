@@ -41,9 +41,10 @@ const NavlinkerButton = ({ to, text }) => {
 
 interface ButtonBuyProps {
   text: ReactNode;
+  func: () => void;
 }
-const ButtonBuy = ({ text }) => {
-  return <button>{text}</button>;
+const ButtonBuy = ({ text, func }) => {
+  return <button onClick={func}>{text}</button>;
 };
 
 interface ButtonAcionProps {

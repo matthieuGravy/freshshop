@@ -44,6 +44,12 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  const handleClick = (product: any) => {
+    // Faites quelque chose avec le produit ici
+    console.log(product);
+  };
+
   const styleH3 = "";
   return (
     <>
@@ -54,6 +60,7 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
         products.map((product: any) => (
           <ProductCard
             key={product._id}
+            func={() => handleClick(product)}
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }
@@ -65,8 +72,18 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
               />
             }
             price={product.price}
-            button1={<ButtonBuy text={<CaddieIcon />} />}
-            button2={<ButtonBuy text={<WishIcon />} />}
+            button1={
+              <ButtonBuy
+                text={<CaddieIcon />}
+                onClick={() => handleClick(product)}
+              />
+            }
+            button2={
+              <ButtonBuy
+                text={<WishIcon />}
+                onClick={() => handleClick(product)}
+              />
+            }
           />
         ))
       )}

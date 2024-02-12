@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 
 import { ProductCard } from "../cards";
 import Heading from "../JSXML/Heading";
@@ -16,6 +17,9 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
 }) => {
   const [products, setProducts] = useState<any>(null);
   const [IsLoading, setIsLoading] = useState(true);
+  const [redirect, setRedirect] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const navigate = useNavigate();
 
   const fetchProductByCategory = async () => {
     setIsLoading(true);
@@ -52,6 +56,14 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
     fetchProductByCategory();
   }, [category]);
   const styleH3 = "text-orange-500 ";
+
+  const handleClick = (product: any) => {
+    if (product && product.id) {
+      navigate(`/productpage/${product.id}`, { state: { product } });
+    } else {
+      console.error(error);
+    }
+  };
   return (
     <>
       {IsLoading ? (
@@ -61,6 +73,7 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
         products.map((product: any) => (
           <ProductCard
             key={product._id}
+            func={() => handleClick(product)}
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }
@@ -73,8 +86,19 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
             }
             alt={product.name}
             price={product.price}
-            button1={<ButtonBuy text={<CaddieIcon />} />}
-            button2={<ButtonBuy text={<WishIcon />} />}
+            price={product.price}
+            button1={
+              <ButtonBuy
+                text={<CaddieIcon />}
+                onClick={() => handleClick(product)}
+              />
+            }
+            button2={
+              <ButtonBuy
+                text={<WishIcon />}
+                onClick={() => handleClick(product)}
+              />
+            }
           />
         ))
       )}

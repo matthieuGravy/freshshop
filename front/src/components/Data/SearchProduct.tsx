@@ -43,6 +43,10 @@ function SearchProduct() {
       console.error(error);
     }
   };
+  const handleClick = (product: any) => {
+    // Faites quelque chose avec le produit ici
+    console.log(product);
+  };
 
   return (
     <>
@@ -82,7 +86,11 @@ function SearchProduct() {
             {products.length > 0 ? (
               <>
                 {products.map((product) => (
-                  <ul key={product._id} className="w-56 bg-stone-50 ">
+                  <ul
+                    key={product._id}
+                    onClick={() => handleClick(product)}
+                    className="w-56 bg-stone-50 "
+                  >
                     <li className="">
                       <SearchCards
                         image={product.image}

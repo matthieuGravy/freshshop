@@ -10,6 +10,8 @@ import Loginpage from "./pages/Loginpage/Loginpage";
 import Castpage from "./pages/Profilepage/Castpage/Castpage";
 import Wishlistpage from "./pages/Profilepage/Wishlistpage/Wishlistpage";
 import Infopage from "./pages/Profilepage/Infopage/Infopage";
+import Productspage from "./pages/Shoppage/Productspage/Productspage";
+import Productpage from "./pages/Shoppage/Productpage/Productpage";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +20,14 @@ export const router = createBrowserRouter([
     children: [
       { path: "/", element: <Homepage /> },
       { path: "about", element: <Aboutpage /> },
-      { path: "shop", element: <Shoppage /> },
+      {
+        path: "shop",
+        element: <Shoppage />,
+        children: [
+          { path: "products", element: <Productspage /> },
+          { path: "product/:id", element: <Productpage /> },
+        ],
+      },
       { path: "signup", element: <Registerpage /> },
       {
         path: "/my-account",

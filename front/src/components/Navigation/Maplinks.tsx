@@ -9,7 +9,7 @@ interface Link {
 
 const links: Link[] = [
   { id: 0, to: "/", text: "home" },
-  { id: 1, to: "shop", text: "shop" },
+  { id: 1, to: "shop/products", text: "shop" },
   { id: 2, to: "about", text: "about us" },
 ];
 

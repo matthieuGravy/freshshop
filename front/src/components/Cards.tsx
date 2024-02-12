@@ -36,4 +36,32 @@ const ProductCard: React.FC<ProductCardProps> = ({
   );
 };
 
-export { ProductCard };
+interface SearchCardsProps {
+  title: ReactNode;
+  price: Number;
+  image: React.ReactNode;
+  button1: ReactNode;
+}
+const SearchCards: React.FC<SearchCardsProps> = ({
+  image,
+  title,
+  price,
+  button1,
+}) => {
+  return (
+    <>
+      <figure className="overflow-hidden hover:bg-stone-100 ">
+        <article className="flex flex-row flex-1 justify-between px-4">
+          <img src={image} className="h-12" alt={title} />
+          <figcaption className="text-right">
+            <article className="">{title}</article>
+            <p className="">{price}€</p>
+            <section className="">{button1}</section>
+          </figcaption>
+        </article>
+      </figure>
+    </>
+  );
+};
+
+export { ProductCard, SearchCards };

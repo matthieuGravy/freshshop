@@ -61,16 +61,16 @@ function Topbar() {
 
   return (
     <motion.header
-      variants={{ isVisible: { y: 0 }, isHidden: { y: -65 } }}
-      initial={{ y: -65 }}
+      variants={{ isVisible: { y: 0 }, isHidden: { y: -56 } }}
+      initial={{ y: -56 }}
       animate={
-        ({ y: 0, isHidden: { y: -65 } }, isHidden ? "isHidden" : "isVisible")
+        ({ y: 0, isHidden: { y: -56 } }, isHidden ? "isHidden" : "isVisible")
       }
       transition={{ duration: 0.3 }}
       className="fixed top-0 w-full z-40"
     >
       <section
-        className={`flex justify-between bg-orange-500 items-center ${
+        className={`flex justify-between bg-orange-500 items-center min-h-14 ${
           isNavVisible ? "bg-transparent " : "bg-orange-500"
         }`}
       >

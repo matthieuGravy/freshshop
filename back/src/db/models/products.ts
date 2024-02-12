@@ -382,6 +382,117 @@ class ProductService {
       return [];
     }
   }
+  async sortProductsByPrice(): Promise<IProductDocument[]> {
+    try {
+      const products = await Product.find().sort({ price: 1 }).exec();
+      console.log("Produits triés avec succès par prix.");
+      return products;
+    } catch (error) {
+      console.error("Erreur lors du tri des produits par prix :", error);
+      return [];
+    }
+  }
+  async sortProductsByStock(): Promise<IProductDocument[]> {
+    try {
+      const products = await Product.find().sort({ stock: 1 }).exec();
+      console.log("Produits triés avec succès par stock.");
+      return products;
+    } catch (error) {
+      console.error("Erreur lors du tri des produits par stock :", error);
+      return [];
+    }
+  }
+  async addtoCart(product: IProductDocument): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+
+      const newProduct = await new Product(product).save();
+      console.log("Produit ajouté avec succès à la base de données.");
+      return newProduct;
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async removeToCart(
+    product: IProductDocument
+  ): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+
+      const newProduct = await new Product(product).save();
+      console.log("Produit ajouté avec succès à la base de données.");
+      return newProduct;
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async wishliste(product: IProductDocument): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async removeWishList(
+    product: IProductDocument
+  ): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async getProductById(id: string): Promise<IProductDocument | null> {
+    try {
+      const product = await Product.findById(id).exec();
+      if (!product) {
+        console.log(
+          "Aucun produit correspondant trouvé dans la base de données."
+        );
+        return null;
+      }
+      console.log("Produit récupéré avec succès de la base de données.");
+      return product;
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération du produit de la base de données :",
+        error
+      );
+      return null;
+    }
+  }
 }
 
 const productService = new ProductService();

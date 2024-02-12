@@ -33,11 +33,9 @@ router.get("/:name", async (req: Request, res: Response) => {
   try {
     const products = await productService.getProductsByName(req.params.name);
     if (!products || products.length === 0) {
-      res
-        .status(404)
-        .send({
-          error: "Aucun produit correspondant trouvé dans la base de données.",
-        });
+      res.status(404).send({
+        error: "Aucun produit correspondant trouvé dans la base de données.",
+      });
       return;
     }
     res.json(products);
@@ -56,6 +54,48 @@ router.get("/cat/:category", async (req: Request, res: Response) => {
     );
     console.log("Produits regroupés avec succès de la base de données.");
     console.log(products);
+    res.json(products);
+  } catch (error) {
+    res.status(500).send({
+      error:
+        "Erreur lors de la récupération des produits dans la base de données.",
+    });
+  }
+});
+
+router.get("/id/:id", async (req: Request, res: Response) => {
+  try {
+    const products = await productService.getProductsById(req.params.id);
+    if (!products || products.length === 0) {
+      res.status(404).send({
+        error: "Aucun produit correspondant trouvé dans la base de données.",
+      });
+      return;
+    }
+    res.json(products);
+  } catch (error) {
+    res.status(500).send({
+      error:
+        "Erreur lors de la récupération des produits dans la base de données.",
+    });
+  }
+});
+
+router.get("/price/:price", async (req: Request, res: Response) => {
+  try {
+    const products = await productService.sortProductsByPrice(req.params.price);
+    res.json(products);
+  } catch (error) {
+    res.status(500).send({
+      error:
+        "Erreur lors de la récupération des produits dans la base de données.",
+    });
+  }
+});
+
+router.get("/stock/:stock", async (req: Request, res: Response) => {
+  try {
+    const products = await productService.sortProductsByStock(req.params.stock);
     res.json(products);
   } catch (error) {
     res.status(500).send({

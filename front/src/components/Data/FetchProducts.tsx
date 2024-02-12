@@ -44,7 +44,7 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
   useEffect(() => {
     fetchProducts();
   }, []);
-  const styleH3 = "text-orange-500 ";
+  const styleH3 = "";
   return (
     <>
       {IsLoading ? (

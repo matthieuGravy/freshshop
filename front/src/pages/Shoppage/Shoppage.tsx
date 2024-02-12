@@ -73,18 +73,11 @@ const Shoppage = () => {
         <article></article>
       </section>
       <section className="grid grid-cols-1 xl:grid-cols-4 grid-rows-auto sm:bg-stone-50 pt-12">
-        <header className="xl:col-span-4 grid xl:grid-cols-4 place-items-end ">
-          <section className="xl:col-span-3">
-            <button className="px-4">
-              <FilterIcon />
-            </button>
-            <button className="pe-8">
-              <SearchIcon />
-            </button>
-          </section>
-        </header>
-
-        <section className="col-span-3  py-6 sm:px-6 ">
+        <section className="col-start-4 row-start-1 bg-blue-200 px-6">
+          <article className="bg-blue-300">whishlist</article>
+          <article>Panier</article>
+        </section>
+        <section className="col-span-3  sm:px-6 ">
           <section className="grid auto-rows-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
             {/*
             <FetchProducts />
@@ -99,7 +92,7 @@ const Shoppage = () => {
           </section>
         </section>
         <motion.section
-          className="row-start-2 xl:row-auto   fixed top-4 w-full bg-red-200 flex flex-row"
+          className="xl:row-auto fixed top-4 w-full flex flex-row"
           variants={{ isVisible: { y: 40 }, isHidden: { y: -20 } }}
           initial={{ y: -20 }}
           animate={isHidden ? "isHidden" : "isVisible"}

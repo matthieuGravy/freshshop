@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
+
+import Spinner from "../Icons/Spinner";
 import { ProductCard } from "../cards";
 import Heading from "../JSXML/Heading";
 import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useNavigate } from "react-router-dom";
 
 interface FetchProductsProps {
   render: (products: any) => React.ReactNode;
@@ -75,6 +77,7 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
                 src={product.image}
                 alt={product.name}
                 title={product.title}
+                placeholder={<Spinner />}
               />
             }
             price={product.price}

@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
 
-import Spinner from "../Icons/Spinner";
 import { ProductCard } from "../cards";
 import Heading from "../JSXML/Heading";
 import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
 
-interface fetchProductByCategoryProps {
+interface fetchProductByStockProps {
   category: string;
   render: (products: any) => React.ReactNode;
 }
 
-const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
+const fetchProductByStock: React.FC<fetchProductByStockProps> = ({
   category,
 }) => {
   const [products, setProducts] = useState<any>(null);
@@ -23,7 +22,7 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   const [selectedProduct, setSelectedProduct] = useState(null);
   const navigate = useNavigate();
 
-  const fetchProductByCategory = async () => {
+  const fetchProductByStock = async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -55,7 +54,7 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   };
 
   useEffect(() => {
-    fetchProductByCategory();
+    fetchProductByStock();
   }, [category]);
   const styleH3 = "text-orange-500 ";
 
@@ -69,9 +68,7 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   return (
     <>
       {IsLoading ? (
-        <>
-          <div>Loading...</div>
-        </>
+        <div>Loading...</div>
       ) : (
         products &&
         products.map((product: any) => (
@@ -86,9 +83,10 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
                 src={product.image}
                 alt={product.name}
                 title={product.title}
-                placeholder={<Spinner />}
               />
             }
+            alt={product.name}
+            price={product.price}
             price={product.price}
             button1={
               <ButtonBuy
@@ -109,4 +107,4 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   );
 };
 
-export default fetchProductByCategory;
+export default fetchProductByStock;

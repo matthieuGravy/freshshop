@@ -494,6 +494,104 @@ class ProductService {
       return null;
     }
   }
+  async panier(): Promise<IProductDocument[]> {
+    try {
+      const products = await Product.find();
+      console.log("Produits récupérés avec succès de la base de données.");
+      return products;
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des produits de la base de données :",
+        error
+      );
+      return []; // Retourne un tableau vide en cas d'erreur
+    }
+  }
+  async ajouterAuPanier(product: IProductDocument): Promise<IProductDocument> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+      const newProduct = await new Product(product).save();
+      console.log("Produit ajouté avec succès à la base de données.");
+      return newProduct;
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async retirerDuPanier(product: IProductDocument): Promise<IProductDocument> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+      const newProduct = await new Product(product).save();
+      console.log("Produit ajouté avec succès à la base de données.");
+      return newProduct;
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async wishliste(product: IProductDocument): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        console.log("Le produit existe déjà dans la base de données.");
+        return existingProduct;
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de l'ajout du produit à la base de données :",
+        error
+      );
+      return null;
+    }
+  }
+  async addToWishlist(
+    product: IProductDocument
+  ): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        // Ajoutez ici le code pour ajouter le produit à la wishlist de l'utilisateur
+        console.log("Produit ajouté à la wishlist.");
+        return existingProduct;
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'ajout du produit à la wishlist :", error);
+      return null;
+    }
+  }
+
+  async removeFromWishlist(
+    product: IProductDocument
+  ): Promise<IProductDocument | null> {
+    try {
+      const existingProduct = await Product.findById(product._id);
+      if (existingProduct) {
+        // Ajoutez ici le code pour supprimer le produit de la wishlist de l'utilisateur
+        console.log("Produit supprimé de la wishlist.");
+        return existingProduct;
+      }
+    } catch (error) {
+      console.error(
+        "Erreur lors de la suppression du produit de la wishlist :",
+        error
+      );
+      return null;
+    }
+  }
 }
 
 const productService = new ProductService();

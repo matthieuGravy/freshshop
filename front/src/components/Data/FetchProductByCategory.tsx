@@ -7,6 +7,7 @@ import Heading from "../JSXML/Heading";
 import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
+
 interface fetchProductByCategoryProps {
   category: string;
   render: (products: any) => React.ReactNode;
@@ -48,7 +49,7 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
         console.error("Server Error:", error.response.data);
       }
     } finally {
-      setIsLoading(false); // Appeler setIsLoading(false) dans un bloc finally pour s'assurer qu'il est toujours appelé
+      setIsLoading(false);
     }
   };
 
@@ -58,11 +59,11 @@ const fetchProductByCategory: React.FC<fetchProductByCategoryProps> = ({
   const styleH3 = "text-orange-500 ";
 
   const handleClick = (product: any) => {
-    if (product && product.id) {
-      navigate(`/productpage/${product.id}`, { state: { product } });
-    } else {
-      console.error(error);
+    if (!product._id) {
+      console.error("Product has no _id:", product);
+      return;
     }
+    navigate(`../product/${product._id}`, { state: { product } });
   };
   return (
     <>

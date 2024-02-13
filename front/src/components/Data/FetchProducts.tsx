@@ -5,6 +5,7 @@ import CaddieIcon from "../Icons/CaddieIcon";
 import WishIcon from "../Icons/WishIcon";
 import { ButtonBuy } from "../../components/Buttons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 
 interface FetchProductsProps {
   render: (products: any) => React.ReactNode;
@@ -13,6 +14,7 @@ interface FetchProductsProps {
 const FetchProducts: React.FC<FetchProductsProps> = () => {
   const [products, setProducts] = useState<any>(null);
   const [IsLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     setIsLoading(true);
@@ -38,19 +40,23 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
         console.error("Server Error:", error.response.data);
       }
     } finally {
-      setIsLoading(false); // Appeler setIsLoading(false) dans un bloc finally pour s'assurer qu'il est toujours appelé
+      setIsLoading(false);
     }
   };
   useEffect(() => {
     fetchProducts();
   }, []);
+  const handleProduct = (product: any) => {
+    if (!product._id) {
+      console.error("Product has no _id:", product);
+      return;
+    }
 
-  const handleClick = (product: any) => {
-    // Faites quelque chose avec le produit ici
-    console.log(product);
+    navigate(`../product/${product._id}`, { state: { product } });
   };
 
   const styleH3 = "";
+
   return (
     <>
       {IsLoading ? (
@@ -60,7 +66,7 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
         products.map((product: any) => (
           <ProductCard
             key={product._id}
-            func={() => handleClick(product)}
+            func={() => handleProduct(product)}
             title={
               <Heading level="h3" titre={product.name} className={styleH3} />
             }
@@ -75,13 +81,13 @@ const FetchProducts: React.FC<FetchProductsProps> = () => {
             button1={
               <ButtonBuy
                 text={<CaddieIcon />}
-                onClick={() => handleClick(product)}
+                onClick={() => handleProduct(product)}
               />
             }
             button2={
               <ButtonBuy
                 text={<WishIcon />}
-                onClick={() => handleClick(product)}
+                onClick={() => handleProduct(product)}
               />
             }
           />

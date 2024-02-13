@@ -477,6 +477,7 @@ class ProductService {
   async getProductById(id: string): Promise<IProductDocument | null> {
     try {
       const product = await Product.findById(id).exec();
+      console.log("product: ", product);
       if (!product) {
         console.log(
           "Aucun produit correspondant trouvé dans la base de données."

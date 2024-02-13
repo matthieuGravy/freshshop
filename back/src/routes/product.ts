@@ -65,7 +65,7 @@ router.get("/cat/:category", async (req: Request, res: Response) => {
 
 router.get("/id/:id", async (req: Request, res: Response) => {
   try {
-    const products = await productService.getProductsById(req.params.id);
+    const products = await productService.getProductById(req.params.id);
     if (!products || products.length === 0) {
       res.status(404).send({
         error: "Aucun produit correspondant trouvé dans la base de données.",

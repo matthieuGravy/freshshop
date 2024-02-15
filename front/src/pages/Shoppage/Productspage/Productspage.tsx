@@ -13,6 +13,7 @@ import FilterMenu from "../../../components/Navigation/FilterMenu";
 import Filter from "../../../components/Navigation/Filter";
 import FetchProducts from "../../../components/Data/FetchProducts";
 import FetchProductByCategory from "../../../components/Data/FetchProductByCategory";
+import FetchPorductByStock from "../../../components/Data/FetchPorductByStock";
 import SearchProduct from "../../../components/Data/SearchProduct";
 
 const Productspage = () => {
@@ -65,9 +66,6 @@ const Productspage = () => {
   return (
     <>
       <section className="grid auto-rows-max grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  place-items-center gap-y-16 gap-x-6 bg-stone-100 py-12 px-8 rounded-lg">
-        {/*
-            <FetchProducts />
-            */}
         {selectedCategory === "" && <FetchProducts />}
         {selectedCategory === "fruits" && (
           <FetchProductByCategory category="fruits" />
@@ -84,13 +82,20 @@ const Productspage = () => {
         transition={{ duration: 0.3 }}
       >
         <nav className="bg-orange-500 xl:sticky xl:top-24 top-6 sm:right-0 w-full">
-          <ul className="flex py-2 justify-center">
+          <ul className="flex py-2 justify-center bg-red-200">
             <li>
-              <button className="px-4">Stock only</button>
+              <FilterMenu
+                buttonTitle="By Stock"
+                styleButton="flex items-center justify-between w-64 px-4 pb-2 text-left "
+                onClick={() => console.log("By Stock")}
+                children={
+                  <>
+                    <button></button>
+                  </>
+                }
+              />
             </li>
-            <li>
-              <SearchProduct />
-            </li>
+            <li></li>
             <li>
               <FilterMenu
                 buttonTitle="Category"
@@ -133,6 +138,9 @@ const Productspage = () => {
             </li>
           </ul>
         </nav>
+        <article className="w-full text-right">
+          <SearchProduct />
+        </article>
       </motion.section>
     </>
   );

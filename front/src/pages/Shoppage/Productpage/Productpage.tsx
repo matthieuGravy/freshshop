@@ -61,7 +61,7 @@ const Productpage = () => {
         </section>
         <section className="border-t-4 py-4 bg-blue-200">
           <Heading level="h3" titre="Quantity" className="text-xl font-light" />
-          <label className="pb-8 bg-pink-200" htmlFor="">
+          <label className="pb-8 bg-pink -200" htmlFor="">
             <button>-</button>
             <input type="number" />
             <button>+</button>

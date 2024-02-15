@@ -25,16 +25,13 @@ const fetchProductByStock: React.FC<fetchProductByStockProps> = ({
   const fetchProductByStock = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `http://localhost:4700/products/cat/${category}`,
-        {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`http://localhost:4700/products/stock/1`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         const newProducts = await response.json();
         if (JSON.stringify(newProducts) !== JSON.stringify(products)) {
